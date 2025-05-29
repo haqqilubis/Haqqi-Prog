@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylegallery.css">
+  <title>Haqqi Prog Gallery</title>
+</head>
+<body>
+  <div class="container">
+    <div class="glass-container fade-in">
+      <nav class="navbar">
+        <div class="logo"><a href="#">HaqqiProg</a></div>
+        <ul class="nav-links">
+          <li class="nav-link"><a href="haqqihome.html">Home</a></li>
+          <li class="nav-link"><a href="haqqiaccount.html">Account</a></li>
+          <li class="nav-link"><a href="haqqiabout.html">About</a></li>
+          <li class="nav-link"><a href="haqqigallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+
+      <h1 class="fade-in">Galeri Foto</h1><br>
+
+      <div class="gallery fade-in">
+        <div class="gallery-item">
+          <img src="unnamed.jpg" alt="Foto 1" class="gallery-img">
+        </div>
+        <div class="gallery-item">
+          <img src="WhatsApp Image 2025-05-23 at 09.45.27_8e3fb9b9.jpg" alt="Foto 2" class="gallery-img">
+        </div>
+        <div class="gallery-item">
+          <img src="WhatsApp Image 2025-05-23 at 09.25.36_4e8725a5.jpg" alt="Foto 3" class="gallery-img">
+        </div>
+        <div class="gallery-item">
+          <img src="WhatsApp Image 2025-05-23 at 09.50.23_f3fbb55d.jpg" alt="Foto 4" class="gallery-img">
+        </div>
+      </div><br>
+      
+      <h1 class="fade-in">Foto Hasil Kegabutan</h1><br>
+
+      <div class="gallery fade-in">
+        <div class="gallery-item">
+          <img src="WhatsApp Image 2025-05-23 at 09.43.27_06c0d3fc.jpg" alt="Foto 1" class="gallery-img">
+          <p>Bandara International Kualanamu (Beringin, Sumatera Utara)</p>
+        </div>
+        <div class="gallery-item">
+          <img src="WhatsApp Image 2025-05-23 at 09.47.20_b2e2139f.jpg" alt="Foto 2" class="gallery-img">
+          <p>Steak Food (Hotel Anara Sky Kualanamu, Kualanamu International Airport)</p>
+        </div>
+        <div class="gallery-item">
+          <img src="WhatsApp Image 2025-05-23 at 09.51.08_fa731b44.jpg" alt="Foto 3" class="gallery-img">
+          <p>Masjid Raya Baiturrahman (Banda Aceh, Aceh)</p>
+        </div>
+        <div class="gallery-item">
+          <img src="WhatsApp Image 2025-05-23 at 09.57.01_a4d80a74.jpg" alt="Foto 4" class="gallery-img">
+          <p>Papan Jalan Malioboro (Yogyakarta, Yogyakarta)</p>
+        </div> <br> 
+      </div>
+
+      <footer class="footer fade-in">
+        <p>&copy; 2025 HaqqiProg. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const galleryImages = document.querySelectorAll('.gallery-img');
+
+    galleryImages.forEach(image => {
+      image.addEventListener('click', () => {
+        image.style.transition = 'transform 0.5s ease';
+        image.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          image.style.transform = 'scale(1)';
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Haqqi Prog</title>
+</head>
+<body>
+    <div class="container">
+        <div class="glass-container">
+            <nav class="navbar">
+                <div class="logo"><a href="#">HaqqiProg</a></div>
+            </nav>
+            <div class="content">
+                <div class="main">
+                    <h2>Hey! 👋,<br>It's HaqqiProg</h2>
+                    <p>
+                        HaqqiProg merupakan salah satu platform yang mengajarkan kita bagaimana menjadi seorang
+                        programmer. Pemilik asli HaqqiProg adalah Tafazzul Haqqi Lubis yang biasa kita akrab panggilannya
+                        "Haqqi". Jika anda ingin mengetahui tentang pemilik ini, silahkan anda tekan "Get Started" yang ada dibawah.
+                    </p>
+                    <a href="haqqistarted.html">
+                        <button id="startButton">Get Started</button>
+                    </a>
+                </div>
+                <div class="image-wrapper">
+                    <img src="WhatsApp Image 2025-05-23 at 09.45.27_8e3fb9b9.jpg" id="mainImage" alt="HaqqiProg Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Efek hover pada tombol
+        const button = document.getElementById('startButton');
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'scale(1.1)';
+            button.style.transition = 'transform 0.3s ease';
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'scale(1)';
+        });
+
+        // Efek zoom pada gambar saat diklik
+        const image = document.getElementById('mainImage');
+        image.addEventListener('click', () => {
+            image.style.transition = 'transform 0.5s ease';
+            image.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                image.style.transform = 'scale(1)';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
