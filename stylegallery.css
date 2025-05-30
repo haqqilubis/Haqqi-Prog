@@ -1,19 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
+/* --- Global Styles --- */
 * {
-  box-sizing: border-box;
-  font-family: 'Quicksand', sans-serif;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box; /* Ensures padding and border are included in total width/height */
+    font-family: 'Quicksand', sans-serif;
+    margin: 0; /* Resets default browser margin */
+    padding: 0; /* Resets default browser padding */
 }
 
 body {
-  color: #fff;
-  background-color: #e9ff99;
-  background-image: 
-    color: #ffff;
-    background-color: #e9ff99;
-    background-image: 
+    color: #fff; /* Sets default text color to white */
+    background-color: #e9ff99; /* Base background color */
+    background-image:
+        /* Radial gradients for a dynamic, colorful background effect */
         radial-gradient(at 9% 89%, rgb(201, 166, 23) 0px, transparent 50%),
         radial-gradient(at 72% 6%, hsla(331, 74%, 64%, 1) 0px, transparent 50%),
         radial-gradient(at 24% 19%, hsla(14, 90%, 74%, 1) 0px, transparent 50%),
@@ -21,138 +20,201 @@ body {
         radial-gradient(at 20% 98%, rgb(34, 94, 224) 0px, transparent 50%),
         radial-gradient(at 44% 9%, hsla(40, 96%, 77%, 1) 0px, transparent 50%),
         radial-gradient(at 10% 9%, hsla(76, 65%, 63%, 1) 0px, transparent 50%);
-    min-height: 100vh;
+    min-height: 100vh; /* Ensures body takes at least the full viewport height */
 }
 
 a {
-  text-decoration: none;
-  color: #fff;
+    text-decoration: none; /* Removes underline from links */
+    color: #fff; /* Sets link color to white */
 }
 
+/* --- Layout Container --- */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+    display: flex; /* Uses Flexbox for layout */
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Centers items vertically */
+    min-height: 100vh; /* Ensures container takes at least full viewport height */
+    padding: 20px; /* Add some padding to prevent content from touching edges on small screens */
 }
 
 .glass-container {
-  max-width: 72vw;
-  margin: 10vh auto;
-  padding: 50px;
-  border-radius: 16px;
-  background: rgba(0, 0, 0, 0.56);
-  backdrop-filter: blur(11.6px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    max-width: 72vw; /* Maximum width of the glass effect container */
+    width: 100%; /* Ensures it fills available width within max-width */
+    /* Removed margin: 10vh auto; as .container handles vertical centering */
+    padding: 50px; /* Padding inside the container */
+    border-radius: 16px; /* Rounded corners */
+    background: rgba(0, 0, 0, 0.56); /* Transparent black background */
+    backdrop-filter: blur(11.6px); /* Glassmorphism blur effect */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
 }
 
+/* --- Navbar Styles --- */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex; /* Uses Flexbox for navbar layout */
+    justify-content: space-between; /* Distributes space between logo and nav links */
+    align-items: center; /* Vertically aligns items in the navbar */
+    margin-bottom: 20px; /* Space below the navbar */
 }
 
 .logo {
-  font-size: 30px;
-  font-weight: 600;
+    font-size: 30px; /* Font size for the logo */
+    font-weight: 600; /* Font weight for the logo */
 }
 
 ul.nav-links {
-  list-style: none;
-  display: flex;
+    list-style: none; /* Removes list bullet points */
+    display: flex; /* Uses Flexbox for nav links */
 }
 
 li.nav-link {
-  margin-left: 30px;
-  font-size: 17px;
-  font-weight: 300;
+    margin-left: 30px; /* Space between navigation links */
+    font-size: 17px; /* Font size for nav links */
+    font-weight: 300; /* Font weight for nav links */
 }
 
+li.nav-link a:hover {
+    color: #ffd700; /* Changes link color on hover */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* --- Social Links --- */
 .social-links {
-  margin-top: 20px;
+    margin-top: 20px; /* Space above social links section */
 }
 
 .social-link {
-  display: block;
-  margin: 10px 0;
-  font-size: 18px;
-  color: #fff;
-  transition: color 0.3s ease;
+    display: block; /* Makes each link take full width */
+    margin: 10px 0; /* Vertical space between social links */
+    font-size: 18px; /* Font size for social links */
+    color: #fff; /* Color of social links */
+    transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
 .social-link:hover {
-  color: #2668db;
+    color: #2668db; /* Changes social link color on hover */
 }
 
+/* --- Gallery Styles --- */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 3 photos per row */
-  gap: 20px; /* Space between photos */
+    display: grid; /* Uses CSS Grid for gallery layout */
+    grid-template-columns: repeat(4, 1fr); /* 4 photos per row by default */
+    gap: 20px; /* Space between photos */
+    margin-top: 30px; /* Add some space above the gallery */
 }
 
 .gallery img {
-  width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  max-height: 200px; /* Maximum height */
-  object-fit: cover; /* Ensure images fit well */
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+    width: 100%; /* Image takes full width of its grid cell */
+    height: auto; /* Maintains aspect ratio */
+    max-height: 200px; /* Maximum height for consistent image size */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-radius: 8px; /* Rounded corners for images */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
 }
 
 .gallery img:hover {
-  transform: scale(1.05);
+    transform: scale(1.05); /* Slightly enlarges image on hover */
 }
 
+/* --- Animations --- */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(50px); }
-  to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(50px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
-  animation: fadeIn 1.2s ease forwards;
+    animation: fadeIn 1.2s ease forwards; /* Applies fadeIn animation */
 }
 
 .slide-up {
-  animation: slideUp 1.2s ease forwards;
+    animation: slideUp 1.2s ease forwards; /* Applies slideUp animation */
 }
 
+
 @media screen and (max-width: 1075px) {
-  .content {
-    flex-direction: column;
-  }
+    /* Styles for screens up to 1075px wide (e.g., tablets, small laptops) */
+    .glass-container {
+        max-width: 85vw; /* Slightly increase width for better use of space */
+    }
+    .gallery {
+        grid-template-columns: repeat(3, 1fr); /* Change to 3 photos per row */
+    }
 }
 
 @media screen and (max-width: 720px) {
-  .logo {
-    font-size: 22px;
-  }
-  li.nav-link {
-    font-size: 13px;
-  }
-  .glass-container {
-    margin: 5vh auto;
-    padding: 30px;
-  }
-  .social-link {
-    font-size: 16px;
-  }
+    /* Styles for screens up to 720px wide (e.g., vertical tablets, large phones) */
+    .logo {
+        font-size: 22px; /* Reduces logo font size */
+    }
+    .navbar {
+        flex-direction: column; /* Stacks navbar items (logo and nav links) vertically */
+        align-items: center; /* Centers stacked navbar items */
+    }
+    ul.nav-links {
+        flex-direction: column; /* Stacks navigation links vertically */
+        margin-top: 15px; /* Adds space between logo and nav links */
+    }
+    li.nav-link {
+        font-size: 13px; /* Reduces nav link font size */
+        margin: 5px 0; /* Adjusts vertical margin for stacked links */
+    }
+    .glass-container {
+        max-width: 90vw; /* Increases container width for better screen utilization */
+        padding: 30px; /* Reduces padding */
+    }
+    .social-link {
+        font-size: 16px; /* Reduces social link font size */
+        text-align: center; /* Centers social links */
+    }
+    .social-links {
+        margin-top: 30px; /* Increase space above social links for better separation */
+    }
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* Change to 2 photos per row */
+        gap: 15px; /* Reduce gap between photos */
+    }
+    .gallery img {
+        max-height: 180px; /* Adjust max-height for smaller screens */
+    }
 }
 
+@media screen and (max-width: 480px) {
+    /* Styles for screens up to 480px wide (e.g., most mobile phones) */
+    .logo {
+        font-size: 20px; /* Further reduces logo font size */
+    }
+    li.nav-link {
+        font-size: 12px; /* Further reduces nav link font size */
+    }
+    .glass-container {
+        padding: 20px; /* Reduces padding for smaller screens */
+    }
+    .social-link {
+        font-size: 14px; /* Further reduces social link font size */
+    }
+    .gallery {
+        grid-template-columns: 1fr; /* 1 photo per row on very small screens */
+        gap: 10px; /* Further reduce gap */
+    }
+    .gallery img {
+        max-height: 250px; /* Allow images to be slightly taller on single column layout */
+    }
+}
+
+/* --- Scrollbar Styling --- */
 ::-webkit-scrollbar {
-  width: 8px;
+    width: 8px; /* Width of the scrollbar */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3); /* Color of the scrollbar thumb (draggable part) */
+    border-radius: 10px; /* Rounded corners for the thumb */
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+    background: transparent; /* Background of the scrollbar track */
 }

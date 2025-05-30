@@ -1,17 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+/* Mengimpor font 'Quicksand' dari Google Fonts dengan berat (ketebalan) antara 300 dan 700 */
+
 * {
     font-family: 'Quicksand', sans-serif;
+    /* Menerapkan font 'Quicksand' ke semua elemen */
 }
 
 a {
     text-decoration: none;
+    /* Menghapus garis bawah dari tautan */
     color: #ffff;
+    /* Mengatur warna teks tautan menjadi putih */
 }
 
 body {
     color: #ffff;
+    /* Mengatur warna teks utama menjadi putih */
     background-color: #e9ff99;
-    background-image: 
+    /* Warna latar belakang utama */
+    background-image:
+        /* Beberapa gradien radial untuk membuat efek latar belakang yang menarik */
         radial-gradient(at 9% 89%, rgb(162, 137, 37) 0px, transparent 50%),
         radial-gradient(at 72% 6%, hsla(331, 74%, 64%, 1) 0px, transparent 50%),
         radial-gradient(at 24% 19%, hsla(14, 90%, 74%, 1) 0px, transparent 50%),
@@ -20,159 +28,327 @@ body {
         radial-gradient(at 44% 9%, hsla(40, 96%, 77%, 1) 0px, transparent 50%),
         radial-gradient(at 10% 9%, hsla(76, 65%, 63%, 1) 0px, transparent 50%);
     min-height: 100vh;
+    /* Memastikan tinggi body minimal 100% dari tinggi viewport */
 }
 
 .container {
     display: flex;
+    /* Menggunakan Flexbox untuk tata letak */
     justify-content: center;
+    /* Menyelaraskan item secara horizontal di tengah */
 }
 
 .glass-container {
     display: block;
+    /* Menjadikan elemen ini blok */
     max-width: 72vw;
+    /* Lebar maksimum 72% dari lebar viewport */
     margin: 10vh auto;
+    /* Margin atas/bawah 10% dari tinggi viewport, auto untuk tengah horizontal */
     background: rgba(0, 0, 0, 0.56);
+    /* Latar belakang transparan hitam */
     padding: 50px;
+    /* Padding di dalam container */
     border-radius: 16px;
+    /* Sudut membulat */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* Bayangan kotak */
     backdrop-filter: blur(11.6px);
+    /* Efek blur pada latar belakang elemen di belakangnya */
     overflow: hidden;
+    /* Menyembunyikan konten yang meluap */
     animation: fadeIn 1.5s ease forwards;
+    /* Menerapkan animasi 'fadeIn' */
     opacity: 0;
+    /* Awalnya tidak terlihat untuk animasi fade-in */
 }
 
 .logo {
     display: inline-block;
+    /* Menjadikan elemen ini inline-block */
     font-size: 30px;
+    /* Ukuran font */
     font-weight: 600;
+    /* Ketebalan font */
     margin-top: -10px;
+    /* Margin atas negatif untuk penyesuaian posisi */
 }
 
 ul.nav-links {
     margin: 0;
+    /* Menghapus margin default */
     float: right;
+    /* Mengapung ke kanan */
     display: flex;
+    /* Menggunakan Flexbox */
     list-style: none;
+    /* Menghapus bullet point daftar */
     margin-left: auto;
+    /* Margin kiri otomatis untuk mendorong ke kanan */
 }
 
 li.nav-link {
     display: inline-block;
+    /* Menjadikan item daftar inline-block */
     margin-left: 30px;
+    /* Margin kiri antar item */
     font-size: 17px;
+    /* Ukuran font */
     font-weight: 300;
+    /* Ketebalan font */
 }
 
 .content {
     display: flex;
+    /* Menggunakan Flexbox */
     width: 100%;
+    /* Lebar penuh */
 }
 
 .main {
     margin-top: 10vh;
+    /* Margin atas 10% dari tinggi viewport */
     display: inline-block;
+    /* Menjadikan elemen ini inline-block */
     padding: 20px;
+    /* Padding */
     animation: slideIn 1.2s ease forwards;
+    /* Menerapkan animasi 'slideIn' */
     opacity: 0;
+    /* Awalnya tidak terlihat untuk animasi slide-in */
 }
 
 .main h2 {
     font-size: 35px;
+    /* Ukuran font untuk judul H2 */
 }
 
 .main p {
     font-size: 16px;
+    /* Ukuran font untuk paragraf */
     line-height: 23px;
+    /* Tinggi baris untuk paragraf */
 }
 
 button {
     margin-top: 10px;
+    /* Margin atas */
     width: 100%;
+    /* Lebar penuh */
     height: 40px;
+    /* Tinggi tombol */
     font-size: 15px;
+    /* Ukuran font */
     color: #fff;
+    /* Warna teks tombol */
     background-color: transparent;
+    /* Latar belakang transparan */
     border: 1px solid #fff;
+    /* Border putih */
     border-radius: 10px;
+    /* Sudut membulat */
     cursor: pointer;
+    /* Kursor tangan saat diarahkan */
     transition: all 0.3s ease;
+    /* Transisi halus untuk semua properti */
 }
 
 button:hover {
     border-color: #2668db;
+    /* Warna border saat di-hover */
     background-color: #2668db;
+    /* Warna latar belakang saat di-hover */
 }
 
 .image-wrapper {
     display: flex;
+    /* Menggunakan Flexbox */
     margin-top: 5vh;
+    /* Margin atas 5% dari tinggi viewport */
     position: relative;
+    /* Posisi relatif untuk penempatan elemen anak */
 }
 
 .image-wrapper img {
     max-width: 500px;
-
+    /* Lebar maksimum gambar */
 }
 
 .attrebute {
     position: absolute;
+    /* Posisi absolut */
     bottom: 20px;
+    /* 20px dari bawah */
     right: 0;
+    /* 0px dari kanan */
     font-size: 12px;
+    /* Ukuran font */
 }
 
+/* Media Queries */
 @media screen and (max-width: 1075px) {
+    /* Aturan CSS ini berlaku ketika lebar layar kurang dari atau sama dengan 1075px */
     .content {
         flex-direction: column;
+        /* Mengubah arah Flexbox menjadi kolom (item akan menumpuk vertikal) */
     }
 }
 
 @media screen and (max-width: 720px) {
+    /* Aturan CSS ini berlaku ketika lebar layar kurang dari atau sama dengan 720px */
     .logo {
         font-size: 22px;
+        /* Mengurangi ukuran font logo */
+    }
+    ul.nav-links {
+        float: none;
+        /* Menghapus float agar penempatan lebih baik di tengah pada layar yang lebih kecil */
+        display: flex;
+        /* Menggunakan Flexbox */
+        justify-content: center;
+        /* Menyelaraskan tautan navigasi di tengah secara horizontal */
+        margin-top: 10px;
+        /* Menambahkan margin atas */
     }
     li.nav-link {
+        margin: 0 10px;
+        /* Menyesuaikan jarak antar tautan */
         font-size: 13px;
+        /* Mengurangi ukuran font tautan */
     }
     .main h2 {
         font-size: 28px;
+        /* Mengurangi ukuran font judul H2 */
     }
     .main p {
         font-size: 15px;
+        /* Mengurangi ukuran font paragraf */
     }
     button {
         font-size: 13px;
+        /* Mengurangi ukuran font tombol */
+    }
+    .image-wrapper {
+        justify-content: center;
+        /* Menyelaraskan gambar di tengah pada layar yang lebih kecil */
     }
     .image-wrapper img {
         max-width: 400px;
+        /* Mengurangi lebar maksimum gambar */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Aturan CSS ini berlaku ketika lebar layar kurang dari atau sama dengan 480px (untuk tampilan ponsel) */
+    .glass-container {
+        max-width: 90vw;
+        /* Meningkatkan lebar container untuk memanfaatkan lebih banyak ruang layar */
+        margin: 5vh auto;
+        /* Menyesuaikan margin */
+        padding: 30px;
+        /* Mengurangi padding */
+    }
+    .logo {
+        font-size: 20px;
+        /* Mengurangi ukuran font lebih lanjut */
+        display: block;
+        /* Menjadikan logo elemen blok untuk tata letak yang lebih baik */
+        text-align: center;
+        /* Menyelaraskan logo di tengah */
+        margin-bottom: 10px;
+        /* Menambahkan margin bawah */
+    }
+    ul.nav-links {
+        flex-direction: column;
+        /* Menumpuk tautan navigasi secara vertikal */
+        align-items: center;
+        /* Menyelaraskan tautan yang ditumpuk di tengah */
+        margin-left: 0;
+        /* Menghapus margin kiri otomatis */
+    }
+    li.nav-link {
+        margin: 5px 0;
+        /* Menyesuaikan jarak untuk tautan yang ditumpuk */
+        font-size: 12px;
+        /* Mengurangi ukuran font lebih lanjut */
+    }
+    .main {
+        margin-top: 5vh;
+        /* Mengurangi margin atas untuk konten */
+        padding: 10px;
+        /* Mengurangi padding untuk konten */
+    }
+    .main h2 {
+        font-size: 24px;
+        /* Menyesuaikan ukuran judul */
+        text-align: center;
+        /* Menyelaraskan judul di tengah */
+    }
+    .main p {
+        font-size: 14px;
+        /* Menyesuaikan ukuran paragraf */
+        text-align: center;
+        /* Menyelaraskan teks paragraf di tengah */
+    }
+    button {
+        font-size: 12px;
+        /* Ukuran teks tombol lebih kecil */
+        height: 35px;
+        /* Tinggi tombol sedikit lebih kecil */
+    }
+    .image-wrapper img {
+        max-width: 280px;
+        /* Membuat gambar lebih kecil lagi untuk ponsel */
+    }
+    .attrebute {
+        bottom: 10px;
+        /* Menyesuaikan posisi atribut */
+        font-size: 10px;
+        /* Ukuran teks atribut lebih kecil */
+        left: 50%;
+        /* Mengatur posisi ke tengah horizontal */
+        transform: translateX(-50%);
+        /* Menyelaraskan teks atribut di tengah */
+        white-space: nowrap;
+        /* Mencegah pemisah baris */
     }
 }
 
 /* ANIMASI */
-
 @keyframes fadeIn {
+    /* Animasi fade-in */
     to {
         opacity: 1;
+        /* Menjadi sepenuhnya terlihat */
         transform: translateY(0);
+        /* Tanpa pergeseran vertikal */
     }
 }
 
 @keyframes slideIn {
+    /* Animasi slide-in */
     from {
         transform: translateX(-50px);
+        /* Dimulai dari 50px ke kiri */
         opacity: 0;
+        /* Awalnya tidak terlihat */
     }
     to {
         transform: translateX(0);
+        /* Berakhir di posisi asli */
         opacity: 1;
+        /* Menjadi sepenuhnya terlihat */
     }
 }
 
 @keyframes float {
+    /* Animasi mengambang (float) */
     0%, 100% {
         transform: translateY(0);
+        /* Posisi normal */
     }
     50% {
         transform: translateY(-20px);
+        /* Bergeser 20px ke atas di tengah animasi */
     }
 }
