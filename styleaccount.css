@@ -2,218 +2,194 @@
 
 /* --- Global Styles --- */
 * {
-    box-sizing: border-box; /* Ensures padding and border are included in total width/height */
-    font-family: 'Quicksand', sans-serif;
-    margin: 0; /* Resets default browser margin */
-    padding: 0; /* Resets default browser padding */
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    color: #fff; /* Sets default text color to white */
-    background-color: #e9ff99; /* Base background color */
-    background-image:
-        /* Radial gradients for a dynamic, colorful background effect */
-        radial-gradient(at 9% 89%, rgb(201, 166, 23) 0px, transparent 50%),
-        radial-gradient(at 72% 6%, hsla(331, 74%, 64%, 1) 0px, transparent 50%),
-        radial-gradient(at 24% 19%, hsla(14, 90%, 74%, 1) 0px, transparent 50%),
-        radial-gradient(at 65% 6%, hsla(6, 79%, 76%, 1) 0px, transparent 50%),
-        radial-gradient(at 20% 98%, rgb(34, 94, 224) 0px, transparent 50%),
-        radial-gradient(at 44% 9%, hsla(40, 96%, 77%, 1) 0px, transparent 50%),
-        radial-gradient(at 10% 9%, hsla(76, 65%, 63%, 1) 0px, transparent 50%);
-    min-height: 100vh; /* Ensures body takes at least the full viewport height */
+  color: #fff;
+  background-color: #1e3c72;
+  background-image:
+    radial-gradient(circle at 20% 20%, #3a8ddf, transparent 50%),
+    radial-gradient(circle at 80% 80%, #1e3c72, transparent 50%);
+  min-height: 100vh;
 }
+
 
 a {
-    text-decoration: none; /* Removes underline from links */
-    color: #fff; /* Sets link color to white */
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
 }
 
-/* --- Layout Container --- */
 .container {
-    display: flex; /* Uses Flexbox for layout */
-    justify-content: center; /* Centers items horizontally */
-    align-items: center; /* Centers items vertically */
-    min-height: 100vh; /* Ensures container takes at least full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 .glass-container {
-    max-width: 72vw; /* Maximum width of the glass effect container */
-    width: 90%; /* Added to ensure it shrinks properly on smaller screens */
-    /* Removed margin: 10vh auto; as .container handles centering */
-    padding: 50px; /* Padding inside the container */
-    border-radius: 16px; /* Rounded corners */
-    background: rgba(0, 0, 0, 0.56); /* Transparent black background */
-    backdrop-filter: blur(11.6px); /* Glassmorphism blur effect */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  width: 100%;
+  max-width: 72vw;
+  padding: 50px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.56);
+  backdrop-filter: blur(11.6px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.2s ease forwards;
+  opacity: 0;
 }
 
-/* --- Navbar Styles --- */
+/* --- Navbar --- */
 .navbar {
-    display: flex; /* Uses Flexbox for navbar layout */
-    justify-content: space-between; /* Distributes space between logo and nav links */
-    align-items: center; /* Vertically aligns items in the navbar */
-    margin-bottom: 20px; /* Space below the navbar */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .logo {
-    font-size: 30px; /* Font size for the logo */
-    font-weight: 600; /* Font weight for the logo */
-    /* Removed margin-top: -10px; as it's often not needed with proper vertical alignment */
+  font-size: 30px;
+  font-weight: 600;
 }
 
-ul.nav-links {
-    list-style: none; /* Removes list bullet points */
-    display: flex; /* Uses Flexbox for nav links */
-    /* Removed float: right; - Flexbox handles positioning better */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
 }
 
-li.nav-link {
-    margin-left: 30px; /* Space between navigation links */
-    font-size: 17px; /* Font size for nav links */
-    font-weight: 300; /* Font weight for nav links */
+.nav-link a:hover {
+  color: #ffd700;
 }
 
-li.nav-link a:hover {
-    color: #ffd700; /* Changes link color on hover */
-    transition: color 0.3s ease; /* Smooth transition for color change */
-}
-
-/* --- Main Content (if applicable) --- */
-/* If you have a .main class for primary content, define it here. */
-/* Assuming .main is directly inside .glass-container for content. */
+/* --- Main Content --- */
 .main {
-    padding: 20px 0; /* Adjust padding as needed for main content inside glass-container */
+  text-align: center;
+  animation: slideUp 1.2s ease forwards;
+  opacity: 0;
 }
 
 .main h1 {
-    font-size: 35px; /* Font size for main heading */
-    margin-bottom: 20px; /* Space below main heading */
+  font-size: 35px;
+  margin-bottom: 15px;
 }
 
 .main p {
-    font-size: 16px; /* Font size for main paragraph */
-    line-height: 23px; /* Line height for main paragraph */
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 25px;
 }
 
 /* --- Social Links --- */
 .social-links {
-    margin-top: 20px; /* Space above social links section */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 .social-link {
-    display: block; /* Makes each link take full width */
-    margin: 10px 0; /* Vertical space between social links */
-    font-size: 18px; /* Font size for social links */
-    color: #fff; /* Color of social links */
-    transition: color 0.3s ease; /* Smooth transition for color change */
+  font-size: 18px;
+  color: #fff;
 }
 
 .social-link:hover {
-    color: #2668db; /* Changes social link color on hover */
+  color: #2668db;
 }
 
 /* --- Animations --- */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.fade-in {
-    animation: fadeIn 1.2s ease forwards; /* Applies fadeIn animation */
-}
-
-.slide-up {
-    animation: slideUp 1.2s ease forwards; /* Applies slideUp animation */
-}
-
-
-@media screen and (max-width: 1075px) {
-    /* Styles for screens up to 1075px wide (e.g., tablets, small laptops) */
-    /* Note: If .content is a direct child of .glass-container, this might not apply as expected.
-       Ensure your HTML structure matches this CSS intent. */
-    .content {
-        flex-direction: column; /* Stacks content elements vertically */
-    }
-}
-
+/* --- Responsive --- */
 @media screen and (max-width: 720px) {
-    /* Styles for screens up to 720px wide (e.g., vertical tablets, large phones) */
-    .logo {
-        font-size: 22px; /* Reduces logo font size */
-    }
-    .navbar {
-        flex-direction: column; /* Stacks navbar items (logo and nav links) vertically */
-        align-items: center; /* Centers stacked navbar items */
-    }
-    ul.nav-links {
-        flex-direction: column; /* Stacks navigation links vertically */
-        margin-top: 15px; /* Adds space between logo and nav links */
-    }
-    li.nav-link {
-        font-size: 13px; /* Reduces nav link font size */
-        margin: 5px 0; /* Adjusts vertical margin for stacked links */
-    }
-    /* Assuming .main is a direct child or descendant of .glass-container for these styles */
-    .main h1 {
-        font-size: 28px; /* Reduces main heading font size */
-        text-align: center; /* Centers main heading text */
-    }
-    .main p {
-        font-size: 15px; /* Reduces main paragraph font size */
-        text-align: center; /* Centers main paragraph text */
-    }
-    .glass-container {
-        max-width: 90vw; /* Increases container width for better screen utilization */
-        margin: 5vh auto; /* Adjusts top/bottom margin */
-        padding: 30px; /* Reduces padding */
-    }
-    .social-link {
-        font-size: 16px; /* Reduces social link font size */
-        text-align: center; /* Centers social links */
-    }
-    .social-links {
-        margin-top: 30px; /* Increase space above social links for better separation */
-    }
+  .glass-container {
+    padding: 30px;
+    max-width: 90vw;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .main h1 {
+    font-size: 28px;
+  }
+
+  .main p {
+    font-size: 15px;
+  }
+
+  .social-link {
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 480px) {
-    /* Styles for screens up to 480px wide (e.g., most mobile phones) */
-    .logo {
-        font-size: 20px; /* Further reduces logo font size */
-    }
-    li.nav-link {
-        font-size: 12px; /* Further reduces nav link font size */
-    }
-    .main h1 {
-        font-size: 24px; /* Further reduces main heading font size */
-    }
-    .main p {
-        font-size: 14px; /* Further reduces main paragraph font size */
-        line-height: 20px; /* Adjusts line height for smaller text */
-    }
-    .glass-container {
-        padding: 20px; /* Reduces padding for smaller screens */
-    }
-    .social-link {
-        font-size: 14px; /* Further reduces social link font size */
-    }
+  .glass-container {
+    padding: 20px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .main h1 {
+    font-size: 24px;
+  }
+
+  .main p {
+    font-size: 14px;
+  }
+
+  .social-link {
+    font-size: 14px;
+  }
 }
 
-/* --- Scrollbar Styling --- */
+/* --- Scrollbar (Optional) --- */
 ::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
+  width: 8px;
 }
-
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3); /* Color of the scrollbar thumb (draggable part) */
-    border-radius: 10px; /* Rounded corners for the thumb */
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
 }
-
 ::-webkit-scrollbar-track {
-    background: transparent; /* Background of the scrollbar track */
+  background: transparent;
 }

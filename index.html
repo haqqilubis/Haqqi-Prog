@@ -1,57 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Haqqi Prog</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HaqqiProg - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    /* === Reset & Global === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background-color: #1e3c72;
+      background-image:
+        radial-gradient(circle at 20% 20%, #3a8ddf, transparent 50%),
+        radial-gradient(circle at 80% 80%, #1e3c72, transparent 50%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    /* === Container === */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .glass-container {
+      background: rgba(0, 0, 0, 0.56);
+      backdrop-filter: blur(11px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+      padding: 50px;
+      max-width: 850px;
+      width: 100%;
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
+    }
+
+    /* === Navbar === */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      font-size: 16px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #ffd700;
+    }
+
+    /* === Hero Section === */
+    .hero {
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      background: transparent;
+      color: white;
+      border: 1px solid #fff;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: #2668db;
+      border-color: #2668db;
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* === Animation === */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === Responsif === */
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-links a {
+        margin: 5px 0;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero button {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .glass-container {
+        padding: 30px 20px;
+      }
+
+      .logo {
+        font-size: 22px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="glass-container">
-            <nav class="navbar">
-                <div class="logo"><a href="#">HaqqiProg</a></div>
-            </nav>
-            <div class="content">
-                <div class="main">
-                    <h2>Hey! 👋,<br>It's HaqqiProg</h2>
-                    <p>
-                        HaqqiProg merupakan salah satu platform yang mengajarkan kita bagaimana menjadi seorang
-                        programmer. Pemilik asli HaqqiProg adalah Tafazzul Haqqi Lubis yang biasa kita akrab panggilannya
-                        "Haqqi". Jika anda ingin mengetahui tentang pemilik ini, silahkan anda tekan "Get Started" yang ada dibawah.
-                    </p>
-                    <a href="haqqistarted.html">
-                        <button id="startButton">Get Started</button>
-                    </a>
-                </div>
-                <div class="image-wrapper">
-                    <img src="WhatsApp Image 2025-05-23 at 09.45.27_8e3fb9b9.jpg" id="mainImage" alt="HaqqiProg Image">
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="glass-container">
+      <!-- Hero -->
+      <div class="hero">
+        <h1>Selamat Datang di HaqqiProg!</h1>
+        <p>
+          Platform belajar dan eksplorasi pemrograman yang dirancang oleh Tafazzul Haqqi Lubis.
+          Temukan konten menarik seputar coding, akun pribadi, galeri karya, dan banyak lagi.
+        </p>
+        <a href="haqqistarted.html">
+          <button>Get Started</button>
+        </a>
+      </div>
     </div>
-
-    <script>
-        // Efek hover pada tombol
-        const button = document.getElementById('startButton');
-        button.addEventListener('mouseenter', () => {
-            button.style.transform = 'scale(1.1)';
-            button.style.transition = 'transform 0.3s ease';
-        });
-
-        button.addEventListener('mouseleave', () => {
-            button.style.transform = 'scale(1)';
-        });
-
-        // Efek zoom pada gambar saat diklik
-        const image = document.getElementById('mainImage');
-        image.addEventListener('click', () => {
-            image.style.transition = 'transform 0.5s ease';
-            image.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                image.style.transform = 'scale(1)';
-            }, 500);
-        });
-    </script>
+  </div>
+      <footer>&copy; 2024 HaqqiProg. All rights reserved.</footer>
 </body>
 </html>

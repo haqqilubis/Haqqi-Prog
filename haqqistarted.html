@@ -3,24 +3,167 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Haqqi Prog - Home</title>
-  <link rel="stylesheet" href="stylehome.css" />
+  <title>HaqqiProg - Get Started</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background-color: #1e3c72;
+      background-image:
+        radial-gradient(circle at 20% 20%, #3a8ddf, transparent 50%),
+        radial-gradient(circle at 80% 80%, #1e3c72, transparent 50%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .glass-container {
+      max-width: 800px;
+      width: 100%;
+      padding: 50px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.56);
+      backdrop-filter: blur(11px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .intro h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      border: 1px solid #fff;
+      border-radius: 10px;
+      background: transparent;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+
+    .buttons a:hover {
+      background-color: #2668db;
+      border-color: #2668db;
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media screen and (max-width: 720px) {
+      .glass-container {
+        padding: 30px;
+      }
+
+      .intro h2 {
+        font-size: 26px;
+      }
+
+      .intro p {
+        font-size: 15px;
+      }
+
+      .buttons a {
+        font-size: 14px;
+        padding: 10px 18px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .glass-container {
+        padding: 20px;
+      }
+
+      .logo {
+        font-size: 22px;
+        text-align: center;
+      }
+
+      .intro h2 {
+        font-size: 22px;
+      }
+
+      .intro p {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <div class="glass-container fade-in">
-      <nav class="navbar">
-        <div class="logo"><a href="#">HaqqiProg</a></div>
-      </nav>
-      <h1 class="fade-in">Selamat Datang di HaqqiProg!</h1>
-      <div class="social-links slide-up">
-        <a class="social-link" href="index.html" aria-label="Beranda"><i class="fas fa-home"></i> Home</a>
-        <a class="social-link" href="haqqiaccount.html" aria-label="Akun"><i class="fas fa-user"></i> Account</a>
-        <a class="social-link" href="haqqiabout.html" aria-label="Tentang"><i class="fas fa-info-circle"></i> About</a>
-        <a class="social-link" href="haqqigallery.html" aria-label="Galeri"><i class="fas fa-image"></i> Gallery</a>
+    <div class="glass-container">
+      <div class="logo">HaqqiProg</div>
+      <div class="intro">
+        <h2>Anda berada di Halaman Get Started</h2>
+        <p>
+          Halaman ini akan membimbing Anda untuk mengenal lebih jauh tentang pemilik website, tujuan dari HaqqiProg,
+          serta fitur-fitur yang tersedia. Silakan mulai dari halaman yang ingin Anda jelajahi.
+        </p>
+      </div>
+      <div class="buttons">
+        <a href="haqqiabout.html"><i class="fas fa-info-circle"></i> Tentang Saya</a>
+        <a href="haqqiaccount.html"><i class="fas fa-user"></i> Akun</a>
+        <a href="haqqigallery.html"><i class="fas fa-image"></i> Galeri</a>
+        <a href="index.html"><i class="fas fa-home"></i> Kembali ke Home</a>
       </div>
     </div>
   </div>
+  <footer>
+    &copy; 2024 HaqqiProg. All rights reserved.
+  </footer>
 </body>
 </html>
