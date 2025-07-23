@@ -3,65 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HaqqiProg - Galeri</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <meta name="description" content="Profil Tafazzul Haqqi Lubis - Mahasiswa TRPL Politeknik Negeri Medan. Informasi tentang latar belakang akademik dan pengalaman kerja." />
+  <title>HaqqiProg - Tentang</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Quicksand', sans-serif; 
     }
 
     body {
-      background-color: #1e3c72;
-      background-image: radial-gradient(circle at 20% 20%, #3a8ddf, transparent 50%),
-                        radial-gradient(circle at 80% 80%, #1e3c72, transparent 50%);
-      color: #fff;
+      background-color: #f4f4f4;
       transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: #1c1c1c;
+      color: #ddd;
     }
 
     header {
       background: linear-gradient(to right, #0026ff, #20102b);
       color: white;
-      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      padding: 15px 30px;
+      position: relative;
     }
 
-    .logo strong {
-      font-size: 22px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: bold;
     }
 
-    .menu-toggle {
+    .hamburger {
       display: none;
-      font-size: 24px;
-      cursor: pointer;
+      font-size: 28px;
       background: none;
       border: none;
       color: white;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 240px;
+      height: 100%;
+      background-color: #1e1e1e;
+      padding-top: 60px;
+      transition: 0.3s;
+      z-index: 1001;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 25px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px solid #333;
+    }
+
+    .sidebar a.active {
+      color: gold;
+    }
+
+    .sidebar.active {
+      left: 0;
     }
 
     nav {
       display: flex;
-      gap: 20px;
+      gap: 15px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s;
     }
 
     nav a.active {
-      color: gold;
+      color: #ffcc00;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+
+    .mobile-nav a {
+      margin: 8px 0;
     }
 
     .hero {
@@ -72,196 +114,230 @@
       animation: fadeInDown 1s ease;
     }
 
-    .container {
+    .profile-photo-wrapper {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      margin-top: 50px;
+    }
+
+    .profile-photo {
+      width: auto;
+      height: 340px;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .content {
       padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
     }
 
-    .glass-container {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 40px;
-      width: 100%;
-      max-width: 1000px;
-      margin-bottom: 40px;
+    .box {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      border-left: 5px solid #a1a195;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 1s ease;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
+    .box h2 {
+      margin-bottom: 15px;
     }
 
-    figure {
-      margin: 0;
-      text-align: center;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: auto;
-      max-height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    figcaption {
-      font-size: 13px;
-      margin-top: 5px;
-      color: #ddd;
-    }
-
-    .fade-in {
-      animation: fadeIn 1s ease forwards;
-      text-align: center;
+    .box h4 {
+      margin-top: 20px;
       margin-bottom: 10px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .box p, .box li {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 20px;
     }
 
     footer {
-      background-color: #2a2a2a;
-      color: #ccc;
       text-align: center;
       padding: 15px;
+      background-color: #2a2a2a;
+      color: #ccc;
       font-size: 14px;
+      margin-top: 40px;
     }
 
-    .back-link {
-      text-align: center;
-      margin-top: 30px;
+    .sosial-icons {
+      margin-top: 10px;
     }
 
-    .back-link a {
-      color: #fff;
-      border: 1px solid #fff;
-      padding: 10px 20px;
-      border-radius: 10px;
-      transition: all 0.3s ease;
+    .sosial-icons a {
+      margin-right: 10px;
+      color: #432889;
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    .back-link a:hover {
-      background-color: #2668db;
-      border-color: #2668db;
-      transform: scale(1.05);
+    blockquote {
+      font-style: italic;
+      border-left: 4px solid #6b2d91;
+      padding-left: 15px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    /* Responsive menu */
-    @media screen and (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-        background: #20102b;
-        padding: 10px 0;
-      }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-      nav.show {
-        display: flex;
-      }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-      .menu-toggle {
+    @media (max-width: 768px) {
+      .hamburger {
         display: block;
       }
+
+      nav {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: flex;
+        width: 100%;
+      }
+
+      .mobile-nav a {
+        color: white;
+        background-color: #1e1e1e;
+        padding: 10px 20px;
+        text-align: left;
+        border-top: 1px solid #444;
+      }
+    }
+  </style>
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
     }
 
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-track { background: transparent; }
-  </style>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
 </head>
 <body>
   <header>
-    <div class="logo"><strong>HaqqiProg</strong></div>
-    <button class="menu-toggle" onclick="toggleMenu()">
-      <i class="fas fa-bars" id="menuIcon"></i>
-    </button>
-    <nav id="navMenu">
+    <div class="logo">
+      <strong>HaqqiProg</strong>
+    </div>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <nav class="desktop-nav">
       <a href="index.html">Home</a>
-      <a href="haqqigallery.html" class="active">Gallery</a>
-      <a href="sosial.html">Sosial</a>
+      <a href="haqqigallery.html">Gallery</a>
+      <a href="haqqiaccount.html">Sosial</a>
+      <a href="haqqiabout.html" class="active">About</a>
     </nav>
   </header>
 
-  <div class="container">
-    <div class="glass-container fade-in">
-      <h1>Galeri Foto</h1><br>
-      <div class="gallery">
-        <figure><img src="unnamed.jpg" alt="Foto 1"><figcaption>Foto 1</figcaption></figure>
-        <figure><img src="WhatsApp Image 2025-05-23 at 09.45.27_8e3fb9b9.jpg" alt="Foto 2"><figcaption>Foto 2</figcaption></figure>
-        <figure><img src="WhatsApp Image 2025-05-23 at 09.25.36_4e8725a5.jpg" alt="Foto 3"><figcaption>Foto 3</figcaption></figure>
-        <figure><img src="WhatsApp Image 2025-05-23 at 09.50.23_f3fbb55d.jpg" alt="Foto 4"><figcaption>Foto 4</figcaption></figure>
-      </div><br>
-
-      <h1>Foto Hasil Kegabutan</h1><br>
-      <div class="gallery">
-        <figure><img src="WhatsApp Image 2025-05-23 at 09.43.27_06c0d3fc.jpg" alt="Bandara Kualanamu"><figcaption>Bandara Internasional Kualanamu</figcaption></figure>
-        <figure><img src="WhatsApp Image 2025-05-23 at 09.47.20_b2e2139f.jpg" alt="Steak Hotel Anara"><figcaption>Steak Food (Hotel Anara Sky)</figcaption></figure>
-        <figure><img src="WhatsApp Image 2025-05-23 at 09.51.08_fa731b44.jpg" alt="Masjid Baiturrahman"><figcaption>Masjid Raya Baiturrahman</figcaption></figure>
-        <figure><img src="WhatsApp Image 2025-05-23 at 09.57.01_a4d80a74.jpg" alt="Malioboro"><figcaption>Papan Jalan Malioboro</figcaption></figure>
-      </div>
-
-      <div class="back-link">
-        <a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Home</a>
-      </div>
-    </div>
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Home</a>
+    <a href="haqqigallery.html">Gallery</a>
+    <a href="haqqiaccount.html">Sosial</a>
+    <a href="haqqiabout.html">About</a>
   </div>
 
+  <section class="hero">
+    <h1>Tentang Saya</h1>
+    <p>Berikut adalah profil singkat, perjalanan akademik, dan pengalaman profesional saya.</p>
+    <div class="profile-photo-wrapper">
+      <img src="Foto Resmi Haqqi Jas.jpg" alt="Foto Haqqi" class="profile-photo" />
+    </div>
+  </section>
+
+  <main class="content">
+    <section class="box">
+      <h2>Profil</h2>
+      <li>Nama : Tafazzul Haqqi Lubis</li>
+      <li>TTL : Medan, 21 Mei 2006</li>
+      <li>Tempat tinggal : Jakarta</li>
+      <li>Status : Belum menikah</li>
+    </section>
+
+    <section class="box">
+      <h2>Almamater</h2>
+      <ul>
+        <li>D4 Teknologi Rekayasa Perangkat Lunak - Politeknik Negeri Medan</li>
+        <li>S2 Hukum Syariah - UIN Sunan Kalijaga Yogyakarta</li>
+      </ul>
+    </section>
+
+    <section class="box">
+      <h2>Pengalaman</h2>
+      <h4>Pekerjaan :</h4>
+      <ul>
+        <li>Staff Teknologi dan Informasi - Bank BCA Syariah KCU Yogyakarta</li>
+        <li>IT Support - Bank BCA Syariah KCU Yogyakarta</li>
+        <li>Dosen Teknik Informatika - Universitas Gadjah Mada</li>
+        <li>IT Manager - Bank BCA Syariah KC Jakarta Barat</li>
+        <li>IT Support - Injourney Aviation Services</li>
+        <li>Supervisor Teknologi dan Informasi - Bank Syariah Indonesia</li>
+        <li>Direktur Teknologi dan Informasi - Bank Syariah Indonesia</li>
+        <li>Direktur Human Capital and Compliance - Telkom Indonesia</li>
+        <li>Direktur Utama - Bank Syariah Indonesia</li>
+        <li>Komisaris Independen - PLN</li>
+        <li>Komisaris Utama - PLN</li>
+        <li>General Manager - Hotel Santika Dyanadra Medan</li>
+        <li>Menteri Komunikasi dan Digital Republik Indonesia</li>
+      </ul>
+      <h4>Pemagangan :</h4>
+      <ul>
+        <li>IT Support - Hotel Anara Sky Kualanamu</li>
+      </ul>
+      <h4>Kegiatan :</h4>
+      <ul>
+        <li>Osis Ketua Rohis SMASIT Al - Hijrah 2</li>
+        <li>Osis Anggota Humas SMASIT Al - Hijrah 2</li>
+        <li>Anggota Divisi Agama Islam HMPS TRPL Politeknik Negeri Medan</li>
+        <li>Sekretaris Pimpinan Cabang Muhammadiyah Jakarta</li>
+        <li>Ketua Umum Ikatan Alumni Politeknik Negeri Medan (Ikal Polmed)</li>
+      </ul>
+    </section>
+
+    <section class="box">
+      <h2>Kutipan Favorit</h2>
+      <blockquote>
+        <img src="https://img.icons8.com/ios-filled/50/quote-left.png" alt="Kutipan" width="24" />
+        <span>"Ilmu bisa dibeli, harga diri tidak bisa dibeli"</span>
+      </blockquote>
+    </section>
+
+    <section class="box">
+      <h2>Hubungi Saya</h2>
+      <p>Email : haqqilubis90@gmail.com</p>
+      <p>WhatsApp : 085789195158</p>
+      <div class="sosial-icons">
+        <a href="https://linkedin.com/in/haqqi" target="_blank">LinkedIn</a>
+        <a href="https://github.com/haqqi" target="_blank">GitHub</a>
+        <a href="https://instagram.com/haqqi_lubis" target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@haqqi_media" target="_blank">TikTok</a>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    <p>&copy; <span id="year"></span> HaqqiProg. Hak cipta dilindungi undang-undang.</p>
+    &copy; <span id="year"></span> HaqqiProg. Hak cipta dilindungi undang-undang.
   </footer>
-
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById("navMenu");
-      const icon = document.getElementById("menuIcon");
-      nav.classList.toggle("show");
-      icon.classList.toggle("fa-bars");
-      icon.classList.toggle("fa-xmark");
-    }
-
-    // Tutup menu jika klik di luar (untuk mobile)
-    document.addEventListener("click", function (e) {
-      const nav = document.getElementById("navMenu");
-      const toggle = document.querySelector(".menu-toggle");
-      const icon = document.getElementById("menuIcon");
-      if (window.innerWidth <= 768 && nav.classList.contains("show")) {
-        if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-          nav.classList.remove("show");
-          icon.classList.remove("fa-xmark");
-          icon.classList.add("fa-bars");
-        }
-      }
-    });
-
-    // Animasi klik gambar
-    document.querySelectorAll('.gallery img').forEach(img => {
-      img.addEventListener('click', () => {
-        img.style.transition = 'transform 0.5s ease';
-        img.style.transform = 'scale(1.1)';
-        setTimeout(() => img.style.transform = 'scale(1)', 500);
-      });
-    });
-
-    // Tahun otomatis
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
