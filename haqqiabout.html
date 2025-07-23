@@ -3,268 +3,356 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Profil Tafazzul Haqqi Lubis - Mahasiswa TRPL Politeknik Negeri Medan. Informasi tentang latar belakang akademik dan pengalaman kerja." />
   <title>HaqqiProg - Tentang</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
       font-family: 'Quicksand', sans-serif;
     }
 
     body {
-      background-color: #1e3c72;
-      background-image:
-        radial-gradient(circle at 20% 20%, #3a8ddf, transparent 50%),
-        radial-gradient(circle at 80% 80%, #1e3c72, transparent 50%);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      background-color: #f4f4f4;
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    .container {
-      flex: 1;
+    body.dark {
+      background-color: #1c1c1c;
+      color: #ddd;
+    }
+
+    header {
+      background: linear-gradient(to right, #0026ff, #20102b);
+      color: white;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      padding: 20px;
-    }
-
-    .glass-container {
-      background: rgba(0, 0, 0, 0.56);
-      backdrop-filter: blur(11px);
-      border-radius: 16px;
-      padding: 50px;
-      max-width: 720px;
-      width: 100%;
-      animation: fadeIn 1.2s ease forwards;
-      opacity: 0;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      padding: 15px 30px;
+      position: relative;
     }
 
     .logo {
-      font-size: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
       font-weight: bold;
-      margin-bottom: 20px;
-      text-align: center;
     }
 
-    .profile-image {
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Sidebar mobile */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 240px;
+      height: 100%;
+      background-color: #1e1e1e;
+      padding-top: 60px;
+      transition: 0.3s;
+      z-index: 1001;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 25px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px solid #333;
+    }
+
+
+    .sidebar a.active {
+      color: gold;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a.active {
+      color: #ffcc00;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+
+    .mobile-nav a {
+      margin: 8px 0;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: white;
+      padding: 60px 30px;
+      text-align: center;
+      animation: fadeInDown 1s ease;
+    }
+
+    .profile-photo-wrapper {
       display: flex;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-top: 50px;
     }
 
-    .profile-image img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #fff;
-    }
-
-    h1 {
-      font-size: 30px;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 1.6;
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .section {
-      margin-bottom: 25px;
-      text-align: center;
-    }
-
-    .section h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      color: #ffd700;
-    }
-
-    ul.education-list {
-      text-align: left;
-      margin: 0 auto;
-      padding-left: 20px;
-      max-width: 90%;
-    }
-
-    ul.education-list li {
-      margin-bottom: 10px;
-      line-height: 1.6;
-    }
-
-    ul.experience-list {
-      text-align: left;
-      margin: 0 auto;
-      padding-left: 20px;
-      max-width: 90%;
-    }
-
-    ul.experience-list li {
-      margin-bottom: 10px;
-      line-height: 1.6;
-    }
-
-    .back-link {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .back-link a {
-      color: #fff;
-      border: 1px solid #fff;
-      padding: 10px 20px;
+    .profile-photo {
+      width: auto;
+      height: 340px;
+      object-fit: contain;
       border-radius: 10px;
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    .back-link a:hover {
-      background-color: #2668db;
-      border-color: #2668db;
-      transform: scale(1.05);
+    .content {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
     }
 
-    .quote-section {
-      margin: 40px 0;
+    .box {
+      background-color: white;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border-left: 4px solid #3a8ddf;
+      margin-bottom: 30px;
       border-radius: 10px;
+      border-left: 5px solid #a1a195;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 1s ease;
     }
 
-    .quote-box {
+    body.dark .box {
+      background-color: #2e2e2e;
+      color: #ddd;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .box h2 {
+      margin-bottom: 15px;
+    }
+
+    .box p, .box li {
       font-size: 18px;
-      color: #eee;
-      font-style: italic;
-      position: relative;
-      padding: 10px 20px;
+      line-height: 1.6;
     }
 
-    .quote-mark {
-      font-size: 26px;
-      color: #3a8ddf;
-      font-weight: bold;
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
     }
-
 
     footer {
       text-align: center;
       padding: 15px;
+      background-color: #2a2a2a;
+      color: #ccc;
       font-size: 14px;
-      background: transparent;
-      color: rgba(255, 255, 255, 0.6);
+      margin-top: 40px;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .sosial-icons a {
+      margin-right: 10px;
+      color: #432889;
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    @media screen and (max-width: 480px) {
-      .glass-container {
-        padding: 30px;
+    body.dark .sosial-icons a {
+      color: #ffcc00;
+    }
+
+    blockquote {
+      font-style: italic;
+      border-left: 4px solid #6b2d91;
+      padding-left: 15px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
       }
 
-      h1 {
-        font-size: 24px;
+      nav {
+        display: none;
       }
 
-      .section h2 {
-        font-size: 20px;
+      .mobile-nav {
+        display: flex;
+        width: 100%;
       }
 
-      p, li {
-        font-size: 14px;
-      }
-
-      .profile-image img {
-        width: 100px;
-        height: 100px;
+      .mobile-nav a {
+        color: white;
+        background-color: #1e1e1e;
+        padding: 10px 20px;
+        text-align: left;
+        border-top: 1px solid #444;
       }
     }
   </style>
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
 </head>
 <body>
-  <div class="container">
-    <div class="glass-container">
-      <div class="logo">HaqqiProg</div>
-
-      <div class="profile-image">
-        <img src="Foto Resmi Haqqi Jas.jpg" alt="Foto Profil Haqqi" />
-      </div>
-      <div class="section">
-        <h1>Tentang Saya</h1>
-        <p>
-          Halo! Saya <strong>Tafazzul Haqqi Lubis</strong>, pemilik HaqqiProg. Saya berasal dari Medan, Sumatera Utara, Indonesia. 
-          Saya menyukai dunia IT, multimedia, menyoba yang tidak pernah dilakukan, dan dijuliki "bapak multitalenta". 
-          Misi saya adalah berbagi ilmu dan inspirasi kepada siapa saja yang ingin belajar.
-        </p>
-      </div>
-
-      <div class="section">
-        <h2><i class="fas fa-graduation-cap"></i> Almamater</h2>
-        <ul class="education-list">
-        <p>
-          <li>
-          D4 Teknologi Rekayasa Perangkat Lunak, Politeknik Negeri Medan
-          </li>
-          <li>
-          S2 Akuntansi Syariah, UIN Sunan Kalijaga Yogyakarta
-          </li>
-        </p>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2><i class="fas fa-briefcase"></i> Pengalaman</h2> <br> 
-        <h3> INGAT!, INI PENGALAMAN HANYA SEKEDAR ILUSTRASI. JIKA KALIAN "AAMIIN" KAN, MAKA SAYA UCAPKAN TERIMA KASIH</h3> <br>
-        <ul class="experience-list">
-            <li>Anggota Divisi Agama Islam HMPS TRPL Politeknik Negeri Medan</li>
-            <li>Sekretaris Pimpinan Cabang – Muhammadiyah Yogyakarta</li>
-            <li>Dosen Teknik Informatika - Universitas Gadjah Mada</li>
-            <li>Staff Teknologi dan Informasi – Bank BCA Syariah KCU Yogyakarta</li>
-            <li>Staff IT Support – Injourney</li>
-            <li>Direktur Teknologi dan Informasi – Bank Syariah Indonesia</li>
-            <li>Direktur Utama - Bank Syariah Indonesia</li>
-            <li>Komisaris Utama - PLN</li>
-            <li>General Manager - Hotel Santika Dyandra Medan</li>
-            <li>Menteri Komunikasi Digital Republik Indonesia</li>
-        </ul>
-      </div>
-
-      <section class="quote-section">
-        <div class="quote-box">
-          <span class="quote-mark">“</span>
-          Belajar bukan tentang siapa yang tercepat, tapi siapa yang paling konsisten.
-          <span class="quote-mark">”</span>
-        </div>
-      </section>
-      
-
-
-      <div class="back-link">
-        <a href="haqqistarted.html"><i class="fas fa-arrow-left"></i> Kembali ke Home</a>
-      </div>
+  <header>
+    <div class="logo">
+      <strong>HaqqiProg</strong>
     </div>
+
+    <!-- Tombol hamburger untuk mobile -->
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+    <!-- Navigasi biasa untuk desktop -->
+    <nav class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="haqqigallery.html">Gallery</a>
+      <a href="haqqiaccount.html">Sosial</a>
+      <a href="haqqiabout.html" class="active">About</a>
+    </nav>
+  </header>
+
+    <!-- Sidebar untuk mobile -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Home</a>
+    <a href="haqqigallery.html">Gallery</a>
+    <a href="haqqiaccount.html">Sosial</a>
+    <a href="haqqiabout.html">About</a>
   </div>
 
+
+  <section class="hero">
+    <h1>Tentang Saya</h1>
+    <p>Berikut adalah profil singkat, perjalanan akademik, dan pengalaman profesional saya.</p>
+    <div class="profile-photo-wrapper">
+      <img src="Foto Resmi Haqqi Jas.jpg" alt="Foto Haqqi" class="profile-photo" />
+    </div>
+  </section>
+
+  <main class="content">
+    <section class="box">
+      <h2>Profil</h2>
+      <li>Nama : Tafazzul Haqqi Lubis</li>
+      <li>TTL : Medan, 21 Mei 2006</li>
+      <li>Tempat tinggal : Jakarta</li>
+      <li>Status : Belum menikah</li>
+    </section>
+
+    <section class="box">
+      <h2>Almamater</h2>
+      <ul>
+        <li>D4 Teknologi Rekayasa Perangkat Lunak - Politeknik Negeri Medan</li>
+        <li>S2 Hukum Syariah - UIN Sunan Kalijaga Yogyakarta</li>
+      </ul>
+    </section>
+
+    <section class="box">
+      <h2>Pengalaman</h2>
+      <h4>Pekerjaan :</h4><br>
+      <ul>
+        <li>Staff Teknologi dan Informasi - Bank BCA Syariah KCU Yogyakarta</li>
+        <li>IT Support - Bank BCA Syariah KCU Yogyakarta</li>
+        <li>Dosen Teknik Informatika - Universitas Gadjah Mada</li>
+        <li>IT Manager - Bank BCA Syariah KC Jakarta Barat</li>
+        <li>IT Support - Injourney Aviation Services</li>
+        <li>Supervisor Teknologi dan Informasi - Bank Syariah Indonesia</li>
+        <li>Direktur Teknologi dan Informasi - Bank Syariah Indonesia</li>
+        <li>Direktur Human Capital and Compliance - Telkom Indonesia</li>
+        <li>Direktur Utama - Bank Syariah Indonesia</li>
+        <li>Komisaris Independen - PLN</li>
+        <li>Komisaris Utama - PLN</li>
+        <li>General Manager - Hotel Santika Dyanadra Medan</li>
+        <li>Menteri Komunikasi dan Digital Republik Indonesia</li>
+      </ul><br>
+      <h4>Pemagangan :</h4><br>
+      <ul>
+        <li>IT Support - Hotel Anara Sky Kualanamu</li>
+      </ul><br>
+      <h4>Kegiatan :</h4><br>
+        <li>Osis Ketua Rohis SMASIT Al - Hijrah 2</li>
+        <li>Osis Anggota Humas SMASIT Al - Hijrah 2</li>
+        <li>Anggota Divisi Agama Islam HMPS TRPL Politeknik Negeri Medan</li>
+        <li>Sekretaris Pimpinan Cabang Muhammadiyah Jakarta</li>
+        <li>Ketua Umum Ikatan Alumni Politeknik Negeri Medan (Ikal Polmed)</li>
+    </section>
+
+    <section class="box">
+      <h2>Kutipan Favorit</h2>
+      <blockquote>
+        <img src="https://img.icons8.com/ios-filled/50/quote-left.png" alt="Kutipan" width="24" />
+        <span>"Ilmu bisa dibeli, harga diri tidak bisa dibeli"</span>
+      </blockquote>
+    </section>
+
+    <section class="box">
+      <h2>Hubungi Saya</h2>
+      <p>Email : haqqilubis90@gmail.com</p>
+      <p>WhatsApp : 085789195158</p><br>
+      <div class="sosial-icons">
+        <a href="https://linkedin.com/in/haqqi" target="_blank">LinkedIn</a>
+        <a href="https://github.com/haqqi" target="_blank">GitHub</a>
+        <a href="https://instagram.com/haqqi_lubis" target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@haqqi_media" target="_blank">TikTok</a>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    &copy; 2024 HaqqiProg. All rights reserved.
+    &copy; <span id="year"></span> HaqqiProg. Hak cipta dilindungi undang-undang.
   </footer>
 </body>
 </html>
