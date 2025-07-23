@@ -12,7 +12,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Quicksand', sans-serif; 
     }
 
     body {
@@ -52,16 +52,6 @@
       cursor: pointer;
     }
 
-    .hamburger {
-      display: none;
-      font-size: 28px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* Sidebar mobile */
     .sidebar {
       position: fixed;
       top: 0;
@@ -82,7 +72,6 @@
       font-weight: bold;
       border-bottom: 1px solid #333;
     }
-
 
     .sidebar a.active {
       color: gold;
@@ -155,14 +144,13 @@
       animation: fadeInUp 1s ease;
     }
 
-    body.dark .box {
-      background-color: #2e2e2e;
-      color: #ddd;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-    }
-
     .box h2 {
       margin-bottom: 15px;
+    }
+
+    .box h4 {
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
 
     .box p, .box li {
@@ -173,6 +161,7 @@
     ul {
       list-style-type: disc;
       margin-left: 20px;
+      margin-bottom: 20px;
     }
 
     footer {
@@ -184,15 +173,15 @@
       margin-top: 40px;
     }
 
+    .sosial-icons {
+      margin-top: 10px;
+    }
+
     .sosial-icons a {
       margin-right: 10px;
       color: #432889;
       text-decoration: none;
       font-weight: bold;
-    }
-
-    body.dark .sosial-icons a {
-      color: #ffcc00;
     }
 
     blockquote {
@@ -253,11 +242,7 @@
     <div class="logo">
       <strong>HaqqiProg</strong>
     </div>
-
-    <!-- Tombol hamburger untuk mobile -->
     <button class="hamburger" onclick="toggleSidebar()">☰</button>
-
-    <!-- Navigasi biasa untuk desktop -->
     <nav class="desktop-nav">
       <a href="index.html">Home</a>
       <a href="haqqigallery.html">Gallery</a>
@@ -266,14 +251,12 @@
     </nav>
   </header>
 
-    <!-- Sidebar untuk mobile -->
   <div class="sidebar" id="sidebar">
     <a href="index.html">Home</a>
     <a href="haqqigallery.html">Gallery</a>
     <a href="haqqiaccount.html">Sosial</a>
     <a href="haqqiabout.html">About</a>
   </div>
-
 
   <section class="hero">
     <h1>Tentang Saya</h1>
@@ -302,7 +285,7 @@
 
     <section class="box">
       <h2>Pengalaman</h2>
-      <h4>Pekerjaan :</h4><br>
+      <h4>Pekerjaan :</h4>
       <ul>
         <li>Staff Teknologi dan Informasi - Bank BCA Syariah KCU Yogyakarta</li>
         <li>IT Support - Bank BCA Syariah KCU Yogyakarta</li>
@@ -317,17 +300,19 @@
         <li>Komisaris Utama - PLN</li>
         <li>General Manager - Hotel Santika Dyanadra Medan</li>
         <li>Menteri Komunikasi dan Digital Republik Indonesia</li>
-      </ul><br>
-      <h4>Pemagangan :</h4><br>
+      </ul>
+      <h4>Pemagangan :</h4>
       <ul>
         <li>IT Support - Hotel Anara Sky Kualanamu</li>
-      </ul><br>
-      <h4>Kegiatan :</h4><br>
+      </ul>
+      <h4>Kegiatan :</h4>
+      <ul>
         <li>Osis Ketua Rohis SMASIT Al - Hijrah 2</li>
         <li>Osis Anggota Humas SMASIT Al - Hijrah 2</li>
         <li>Anggota Divisi Agama Islam HMPS TRPL Politeknik Negeri Medan</li>
         <li>Sekretaris Pimpinan Cabang Muhammadiyah Jakarta</li>
         <li>Ketua Umum Ikatan Alumni Politeknik Negeri Medan (Ikal Polmed)</li>
+      </ul>
     </section>
 
     <section class="box">
@@ -341,7 +326,7 @@
     <section class="box">
       <h2>Hubungi Saya</h2>
       <p>Email : haqqilubis90@gmail.com</p>
-      <p>WhatsApp : 085789195158</p><br>
+      <p>WhatsApp : 085789195158</p>
       <div class="sosial-icons">
         <a href="https://linkedin.com/in/haqqi" target="_blank">LinkedIn</a>
         <a href="https://github.com/haqqi" target="_blank">GitHub</a>
