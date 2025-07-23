@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Berita dan update terbaru dari HaqqiProg. Informasi kegiatan, pengumuman, dan artikel terkini." />
+  <title>HaqqiProg - Berita</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #222;
+      padding-bottom: 40px;
+    }
+
+    header {
+      background: linear-gradient(to right, #0026ff, #20102b);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a.active {
+      color: gold;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 240px;
+      height: 100%;
+      background-color: #1e1e1e;
+      padding-top: 60px;
+      transition: 0.3s;
+      z-index: 999;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 25px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px solid #333;
+    }
+
+    .sidebar a.active {
+      color: gold;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      z-index: 998;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .news-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .news-box {
+      background-color: white;
+      padding: 20px;
+      border-left: 5px solid #432889;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .news-box:hover {
+      transform: scale(1.01);
+    }
+
+    .news-box h3 {
+      margin-bottom: 10px;
+      color: #432889;
+    }
+
+    .news-box p {
+      line-height: 1.6;
+    }
+
+    .news-date {
+      font-size: 14px;
+      color: gray;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #2a2a2a;
+      color: #ccc;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <header>
+    <div class="logo">HaqqiProg</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="haqqigallery.html">Gallery</a>
+      <a href="haqqiaccount.html">Sosial</a>
+      <a href="haqqiabout.html">About</a>
+      <a href="haqqinews.html" class="active">Berita</a>
+    </nav>
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()">☰</button>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Home</a>
+    <a href="haqqigallery.html">Gallery</a>
+    <a href="haqqiaccount.html">Sosial</a>
+    <a href="haqqiabout.html">About</a>
+    <a href="haqqinews.html" class="active">Berita</a>
+  </div>
+
+  <main class="news-container">
+    <div class="news-box">
+      <div class="news-date">20 Juli 2025</div>
+      <h3>5 Persiapan`  </h3>
+      <p>Situs resmi HaqqiProg kini telah hadir dengan tampilan baru yang lebih segar dan responsif. Pengunjung dapat menikmati berbagai fitur seperti galeri, profil, dan berita terkini seputar pengembangan teknologi dan aktivitas Haqqi.</p>
+    </div>
+
+    <div class="news-box">
+      <div class="news-date">17 Juli 2025</div>
+      <h3>Haqqi Mengikuti Seminar Nasional Teknologi</h3>
+      <p>Haqqi menjadi salah satu pembicara dalam seminar nasional bertema "Inovasi Digital di Era Society 5.0" yang diselenggarakan oleh Politeknik Negeri Medan. Acara ini membahas peran pemuda dalam transformasi digital.</p>
+    </div>
+
+    <div class="news-box">
+      <div class="news-date">10 Juli 2025</div>
+      <h3>Haqqi Luncurkan Proyek Open Source</h3>
+      <p>Proyek open source pertama dari HaqqiProg telah tersedia di GitHub! Proyek ini berfokus pada pembuatan dashboard web berbasis HTML-CSS-JavaScript yang mudah digunakan oleh pemula.</p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> HaqqiProg. Semua hak dilindungi.
+  </footer>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      const button = document.getElementById("hamburger");
+
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+      button.textContent = sidebar.classList.contains("active") ? "✕" : "☰";
+    }
+
+    function closeSidebar() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+      document.getElementById("hamburger").textContent = "☰";
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
