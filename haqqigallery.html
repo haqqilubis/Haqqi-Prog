@@ -36,33 +36,91 @@
     }
 
     .logo strong {
-      font-size: 22px;
+      font-size: 20px;
     }
 
-    .menu-toggle {
+    /* Hamburger Button (only visible on mobile) */
+    .hamburger {
       display: none;
       font-size: 24px;
-      cursor: pointer;
       background: none;
       border: none;
-      color: white;
+      cursor: pointer;
+      color: #ffffff;
+      z-index: 1200;
+      display: none; /* hidden by default */
     }
 
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -260px; /* sembunyi ke kanan */
+      width: 240px;
+      height: 100vh;
+      background-color: #1e1e1e;
+      padding-top: 60px;
+      transition: right 0.3s ease;
+      z-index: 1150;
+    }
+
+    .sidebar.active {
+      right: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 25px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px solid #333;
+    }
+
+    .sidebar a.active {
+      color: gold;
+    }
+
+    /* Tombol Close */
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      z-index: 1201;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1100;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Navigasi desktop */
     nav {
       display: flex;
-      gap: 20px;
+      gap: 15px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s;
     }
 
     nav a.active {
-      color: gold;
+      color: #ffcc00;
     }
+
 
     .hero {
       background: linear-gradient(to right, #1e3c72, #2a5298);
@@ -163,18 +221,9 @@
     @media screen and (max-width: 768px) {
       nav {
         display: none;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-        background: #20102b;
-        padding: 10px 0;
       }
 
-      nav.show {
-        display: flex;
-      }
-
-      .menu-toggle {
+      .hamburger {
         display: block;
       }
     }
@@ -190,15 +239,25 @@
 <body>
   <header>
     <div class="logo"><strong>HaqqiProg</strong></div>
-    <button class="menu-toggle" onclick="toggleMenu()">
-      <i class="fas fa-bars" id="menuIcon"></i>
-    </button>
-    <nav id="navMenu">
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <nav id="nav">
       <a href="index.html">Home</a>
       <a href="haqqigallery.html" class="active">Gallery</a>
-      <a href="sosial.html">Sosial</a>
+      <a href="haqqiaccount.html">Sosial</a>
+      <a href="haqqiabout.html">About</a>
     </nav>
   </header>
+
+  <div class="sidebar" id="sidebar">
+    <span class="close-btn" onclick="closeSidebar()">✖</span>
+    <a href="index.html">Home</a>
+    <a href="haqqigallery.html" class="active">Gallery</a>
+    <a href="haqqiaccount.html">Sosial</a>
+    <a href="haqqiabout.html">About</a>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
 
   <div class="container">
     <div class="glass-container fade-in">
@@ -229,13 +288,20 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      const nav = document.getElementById("navMenu");
-      const icon = document.getElementById("menuIcon");
-      nav.classList.toggle("show");
-      icon.classList.toggle("fa-bars");
-      icon.classList.toggle("fa-xmark");
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
     }
+
+    function closeSidebar() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+    }
+
+    // Tutup sidebar saat klik link
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
 
     // Tutup menu jika klik di luar (untuk mobile)
     document.addEventListener("click", function (e) {

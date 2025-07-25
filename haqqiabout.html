@@ -43,25 +43,20 @@
       font-weight: bold;
     }
 
-    .hamburger {
-      display: none;
-      font-size: 28px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-
     .sidebar {
       position: fixed;
       top: 0;
-      left: -260px;
+      right: -260px; /* sembunyikan di kanan */
       width: 240px;
       height: 100%;
       background-color: #1e1e1e;
       padding-top: 60px;
-      transition: 0.3s;
-      z-index: 1001;
+      transition: 0.3s ease;
+      z-index: 1150;
+    }
+
+    .sidebar.active {
+      right: 0; /* munculkan dari kanan */
     }
 
     .sidebar a {
@@ -77,9 +72,40 @@
       color: gold;
     }
 
-    .sidebar.active {
-      left: 0;
+    .close-btn {
+      cursor: pointer;
+      font-size: 24px;
+      position: absolute;
+      top: 10px;
+      left: 20px; /* karena posisinya dari kanan, tombol close tetap di kiri */
+      color: white;
     }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: fixed;
+      right: 20px;
+      z-index: 1100;
+      color: #ffffff;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
 
     nav {
       display: flex;
@@ -94,6 +120,11 @@
 
     nav a.active {
       color: #ffcc00;
+    }
+
+    .close-btn {
+      cursor: pointer;
+      font-size: 24px;
     }
 
     .mobile-nav {
@@ -143,6 +174,99 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       animation: fadeInUp 1s ease;
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      color: #000;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 80vh; /* Batas tinggi */
+      overflow-y: auto;  /* Scroll muncul saat kontennya panjang */
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      position: relative;
+      animation: fadeIn 0.3s ease-in-out;
+      line-height: 1.6;         /* Tambahkan ini */
+      letter-spacing: 0.3px;    /* Sedikit renggang */
+    }
+
+    .modal-content h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      line-height: 1.7;
+    }
+
+    .modal-content li {
+      margin-bottom: 8px;       /* Jarak antar item */
+    }
+
+    .modal-content ul {
+      padding-left: 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .modal-content .close {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #ff0000;
+      transition: color 0.3s ease;
+    }
+
+    .modal-content .close:hover {
+      color: #000;              /* Interaktif hover */
+    }
+
+    body.dark .modal-content {
+      background-color: #2e2e2e;
+      color: #fff;
+    }
+
+    .fancy-button {
+      background-color: #a1a195;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .fancy-button:hover {
+      background: linear-gradient(45deg, #7d78ff, #b2afff);
+      transform: scale(1.05);
+    }
+
+    body.dark .fancy-button {
+      background: linear-gradient(45deg, #7d78ff, #b2afff);
+      color: #fff;
+    }
+
+    body.dark .fancy-button:hover {
+      background: linear-gradient(45deg, #7d78ff, #b2afff);
+    }
+
 
     .box h2 {
       margin-bottom: 15px;
@@ -204,6 +328,13 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    
+
     @media (max-width: 768px) {
       .hamburger {
         display: block;
@@ -229,8 +360,36 @@
   </style>
   <script>
     function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("active");
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
     }
+
+    function closeSidebar() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+    }
+
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+
+    function openModal(id) {
+      document.getElementById(id).style.display = "flex";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    // Tutup modal jika klik di luar konten
+    window.addEventListener("click", function(e) {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (e.target === modal) modal.style.display = "none";
+      });
+    });
+
 
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById("year").textContent = new Date().getFullYear();
@@ -243,6 +402,7 @@
       <strong>HaqqiProg</strong>
     </div>
     <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
     <nav class="desktop-nav">
       <a href="index.html">Home</a>
       <a href="haqqigallery.html">Gallery</a>
@@ -252,11 +412,14 @@
   </header>
 
   <div class="sidebar" id="sidebar">
+    <span class="close-btn" onclick="closeSidebar()">✖</span>
     <a href="index.html">Home</a>
     <a href="haqqigallery.html">Gallery</a>
     <a href="haqqiaccount.html">Sosial</a>
-    <a href="haqqiabout.html">About</a>
+    <a href="haqqiabout.html" class="active">About</a>
   </div>
+
+  <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
 
   <section class="hero">
     <h1>Tentang Saya</h1>
@@ -276,44 +439,13 @@
     </section>
 
     <section class="box">
-      <h2>Almamater</h2>
-      <ul>
-        <li>D4 Teknologi Rekayasa Perangkat Lunak - Politeknik Negeri Medan</li>
-        <li>S2 Hukum Syariah - UIN Sunan Kalijaga Yogyakarta</li>
-      </ul>
+      <h2>Curiculum Value</h2>
+      <button class="fancy-button" onclick="openModal('modalAlmamater')">
+      <strong>Lihat Detail</strong>
+    </button>
+
     </section>
 
-    <section class="box">
-      <h2>Pengalaman</h2>
-      <h4>Pekerjaan :</h4>
-      <ul>
-        <li>Staff Teknologi dan Informasi - Bank BCA Syariah KCU Yogyakarta</li>
-        <li>IT Support - Bank BCA Syariah KCU Yogyakarta</li>
-        <li>Dosen Teknik Informatika - Universitas Gadjah Mada</li>
-        <li>IT Manager - Bank BCA Syariah KC Jakarta Barat</li>
-        <li>IT Support - Injourney Aviation Services</li>
-        <li>Supervisor Teknologi dan Informasi - Bank Syariah Indonesia</li>
-        <li>Direktur Teknologi dan Informasi - Bank Syariah Indonesia</li>
-        <li>Direktur Human Capital and Compliance - Telkom Indonesia</li>
-        <li>Direktur Utama - Bank Syariah Indonesia</li>
-        <li>Komisaris Independen - PLN</li>
-        <li>Komisaris Utama - PLN</li>
-        <li>General Manager - Hotel Santika Dyanadra Medan</li>
-        <li>Menteri Komunikasi dan Digital Republik Indonesia</li>
-      </ul>
-      <h4>Pemagangan :</h4>
-      <ul>
-        <li>IT Support - Hotel Anara Sky Kualanamu</li>
-      </ul>
-      <h4>Kegiatan :</h4>
-      <ul>
-        <li>Osis Ketua Rohis SMASIT Al - Hijrah 2</li>
-        <li>Osis Anggota Humas SMASIT Al - Hijrah 2</li>
-        <li>Anggota Divisi Agama Islam HMPS TRPL Politeknik Negeri Medan</li>
-        <li>Sekretaris Pimpinan Cabang Muhammadiyah Jakarta</li>
-        <li>Ketua Umum Ikatan Alumni Politeknik Negeri Medan (Ikal Polmed)</li>
-      </ul>
-    </section>
 
     <section class="box">
       <h2>Kutipan Favorit</h2>
@@ -340,4 +472,44 @@
     &copy; <span id="year"></span> HaqqiProg. Hak cipta dilindungi undang-undang.
   </footer>
 </body>
+
+<div class="modal" id="modalAlmamater">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modalAlmamater')">&times;</span>
+    <h2>Curiculum Value</h2>
+    <h2>Pendidikan</h2>
+    <ul>
+      <li>D4 Teknologi Rekayasa Perangkat Lunak - Politeknik Negeri Medan</li>
+      <li>S2 Hukum Syariah - UIN Sunan Kalijaga Yogyakarta</li>
+    </ul>
+    <h2>Pekerjaan :</h2>
+      <ul>
+        <li>Staff Teknologi dan Informasi - Bank BCA Syariah KCU Yogyakarta</li>
+        <li>IT Support - Bank BCA Syariah KCU Yogyakarta</li>
+        <li>Dosen Teknik Informatika - Universitas Gadjah Mada</li>
+        <li>IT Manager - Bank BCA Syariah KC Jakarta Barat</li>
+        <li>IT Support - Injourney Aviation Services</li>
+        <li>Supervisor Teknologi dan Informasi - Bank Syariah Indonesia</li>
+        <li>Direktur Teknologi dan Informasi - Bank Syariah Indonesia</li>
+        <li>Direktur Human Capital and Compliance - Telkom Indonesia</li>
+        <li>Direktur Utama - Bank Syariah Indonesia</li>
+        <li>Komisaris Independen - PLN</li>
+        <li>Komisaris Utama - PLN</li>
+        <li>General Manager - Hotel Santika Dyanadra Medan</li>
+        <li>Menteri Komunikasi dan Digital Republik Indonesia</li>
+      </ul>
+      <h2>Pemagangan :</h2>
+      <ul>
+        <li>IT Support - Hotel Anara Sky Kualanamu</li>
+      </ul>
+      <h2>Kegiatan :</h2>
+      <ul>
+        <li>Osis Ketua Rohis SMASIT Al - Hijrah 2</li>
+        <li>Osis Anggota Humas SMASIT Al - Hijrah 2</li>
+        <li>Anggota Divisi Agama Islam HMPS TRPL Politeknik Negeri Medan</li>
+        <li>Sekretaris Pimpinan Cabang Muhammadiyah Jakarta</li>
+        <li>Ketua Umum Ikatan Alumni Politeknik Negeri Medan (Ikal Polmed)</li>
+      </ul>
+  </div>
+</div>
 </html>
