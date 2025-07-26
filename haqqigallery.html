@@ -22,6 +22,10 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
+    body.no-scroll {
+      overflow: hidden;
+    }
+
     header {
       background: linear-gradient(to right, #0026ff, #20102b);
       color: white;
@@ -291,11 +295,13 @@
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("active");
       document.getElementById("overlay").classList.toggle("active");
+      document.body.classList.toggle("no-scroll");
     }
 
     function closeSidebar() {
       document.getElementById("sidebar").classList.remove("active");
       document.getElementById("overlay").classList.remove("active");
+      document.body.classList.remove("no-scroll"); // 🔓 aktifkan scroll kembali
     }
 
     // Tutup sidebar saat klik link

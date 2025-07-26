@@ -20,6 +20,11 @@
       color: #222;
     }
 
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+
     header {
       background: linear-gradient(to right, #0026ff, #20102b);
       color: white;
@@ -383,17 +388,19 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-  AOS.init({ once: true });
+  AOS.init();
   document.getElementById("year").textContent = new Date().getFullYear();
 
   function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("active");
       document.getElementById("overlay").classList.toggle("active");
+      document.body.classList.toggle("no-scroll");
     }
 
     function closeSidebar() {
       document.getElementById("sidebar").classList.remove("active");
       document.getElementById("overlay").classList.remove("active");
+      document.body.classList.remove("no-scroll"); // 🔓 aktifkan scroll kembali
     }
 
     document.querySelectorAll('.sidebar a').forEach(link => {

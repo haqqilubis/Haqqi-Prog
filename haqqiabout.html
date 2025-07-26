@@ -25,6 +25,10 @@
       color: #ddd;
     }
 
+    body.no-scroll {
+      overflow: hidden;
+    }
+
     header {
       background: linear-gradient(to right, #0026ff, #20102b);
       color: white;
@@ -364,11 +368,13 @@
       const overlay = document.getElementById("overlay");
       sidebar.classList.toggle("active");
       overlay.classList.toggle("active");
+      document.body.classList.toggle("no-scroll");
     }
 
     function closeSidebar() {
       document.getElementById("sidebar").classList.remove("active");
       document.getElementById("overlay").classList.remove("active");
+      document.body.classList.remove("no-scroll"); // 🔓 aktifkan scroll kembali
     }
 
     document.querySelectorAll('.sidebar a').forEach(link => {
@@ -377,16 +383,24 @@
 
     function openModal(id) {
       document.getElementById(id).style.display = "flex";
+      const modal = document.getElementById(id);
+      modal.style.display = "flex";
+      document.body.classList.add("no-scroll"); // ⬅ mencegah scroll body
     }
 
     function closeModal(id) {
-      document.getElementById(id).style.display = "none";
+      const modal = document.getElementById(id);
+      modal.style.display = "none";
+      document.body.classList.remove("no-scroll"); // ⬅ kembalikan scroll
     }
 
     // Tutup modal jika klik di luar konten
     window.addEventListener("click", function(e) {
       document.querySelectorAll('.modal').forEach(modal => {
-        if (e.target === modal) modal.style.display = "none";
+        if (e.target === modal) {
+          modal.style.display = "none";
+          document.body.classList.remove("no-scroll"); // ⬅ kembalikan scroll
+        }
       });
     });
 
@@ -486,8 +500,8 @@
       <ul>
         <li>Staff Teknologi dan Informasi - Bank BCA Syariah KCU Yogyakarta</li>
         <li>IT Support - Bank BCA Syariah KCU Yogyakarta</li>
-        <li>Dosen Teknik Informatika - Universitas Gadjah Mada</li>
         <li>IT Manager - Bank BCA Syariah KC Jakarta Barat</li>
+        <li>Dosen Teknik Informatika - Universitas Gadjah Mada</li>
         <li>IT Support - Injourney Aviation Services</li>
         <li>Supervisor Teknologi dan Informasi - Bank Syariah Indonesia</li>
         <li>Direktur Teknologi dan Informasi - Bank Syariah Indonesia</li>
