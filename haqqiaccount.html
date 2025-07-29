@@ -2,10 +2,11 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HaqqiProg - Akun Sosial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HaqqiProg - Sosial Media</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+
   <style>
     * {
       margin: 0;
@@ -15,16 +16,13 @@
     }
 
     body {
-      background-color: #f4f4f4;
+      background-color: #a1a195;
       color: #222;
-    }
-
-    body.no-scroll {
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     header {
-      background: linear-gradient(to right, #0026ff, #20102b);
+      background: linear-gradient(135deg, #0026ff, #20102b);
       color: white;
       padding: 15px 30px;
       display: flex;
@@ -34,25 +32,40 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .logo strong {
-      font-size: 20px;
+      font-size: 24px;
+      background-color: white;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     nav {
       display: flex;
-      gap: 15px;
+      gap: 20px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
     }
 
     nav a.active {
-      color: gold;
+      background-color: #a1a195;
+      color: #000000;
     }
 
     .hamburger {
@@ -65,18 +78,26 @@
       right: 20px;
       z-index: 1100;
       color: #ffffff;
+      padding: 10px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger:hover {
+      background: rgba(255,255,255,0.1);
     }
 
     .sidebar {
       position: fixed;
       top: 0;
-      right: -260px; /* sembunyikan di kanan */
-      width: 240px;
-      height: 100%;
-      background-color: #1e1e1e;
+      right: -300px;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(180deg, #2c3e50, #34495e);
       padding-top: 60px;
-      transition: 0.3s ease;
+      transition: right 0.3s ease;
       z-index: 1150;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
     }
 
     .sidebar.active {
@@ -85,48 +106,72 @@
 
     .sidebar a {
       display: block;
-      padding: 15px 25px;
+      padding: 18px 25px;
       color: white;
       text-decoration: none;
-      font-weight: bold;
-      border-bottom: 1px solid #333;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background: rgba(255,255,255,0.1);
+      padding-left: 35px;
     }
 
     .sidebar a.active {
-      color: gold;
+      background-color: #a1a195;
+      color: #333;
     }
 
     .close-btn {
       cursor: pointer;
       font-size: 24px;
       position: absolute;
-      top: 10px;
-      left: 20px; /* karena posisinya dari kanan, tombol close tetap di kiri */
+      top: 15px;
+      left: 20px;
       color: white;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
     }
 
-    .slider-wrapper {
+    .close-btn:hover {
+      background: rgba(255,255,255,0.1);
+      transform: rotate(90deg);
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1050;
+      backdrop-filter: blur(2px);
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .hero-slider {
       position: relative;
-      width: 100%;
       height: 100vh;
       overflow: hidden;
     }
 
     .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
       width: 100%;
       height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .slide.active {
+      position: absolute;
       opacity: 1;
-      z-index: 1;
+      transition: opacity 1s ease-in-out;
     }
 
     .hero-content {
@@ -148,197 +193,467 @@
     }
 
     .hero-content h1 {
-      font-size: 40px;
+      font-size: 48px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #fff, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      max-width: 800px;
+      margin-bottom: 10px;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .sosial-section {
+      background: white;
+      border-radius: 20px;
+      padding: 60px 40px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    .sosial-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #333;
+      position: relative;
+    }
+
+    .sosial-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    .sosial-section p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sosial-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .sosial-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 40px 30px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .sosial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .sosial-card:hover::before {
+      opacity: 1;
+    }
+
+    .sosial-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .sosial-card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+
+    .sosial-card:hover img {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .sosial-card h3 {
+      color: white;
+      font-size: 20px;
       margin-bottom: 10px;
       font-weight: 700;
     }
 
-    .hero-content p {
-      font-size: 18px;
-      max-width: 800px;
-    }
-
-    .sosial-section {
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    .sosial-section h2 {
-      font-size: 28px;
+    .sosial-card p {
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
       margin-bottom: 20px;
-    }
-
-    .sosial-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .sosial-card {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 220px;
-      transition: transform 0.3s ease;
-    }
-
-    .sosial-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .sosial-card img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 10px;
+      line-height: 1.5;
     }
 
     .sosial-card a {
-      display: block;
-      color: #432889;
-      font-weight: bold;
+      display: inline-block;
+      color: white;
+      font-weight: 600;
       text-decoration: none;
+      background: rgba(255,255,255,0.2);
+      padding: 12px 25px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
     }
 
-    .hubungi-saya {
-      padding: 40px 20px;
+    .sosial-card a:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .hubungi-section {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 20px;
+      padding: 60px 40px;
       text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     }
 
-    .hubungi-saya h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
+    .hubungi-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #333;
+      position: relative;
     }
 
-    .hubungi-saya form {
-      max-width: 500px;
+    .hubungi-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    .hubungi-section p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-form {
+      max-width: 600px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 20px;
     }
 
-    .hubungi-saya input,
-    .hubungi-saya textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    .form-group {
+      position: relative;
     }
 
-    .hubungi-saya button {
-      background-color: #432889;
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid rgba(102, 126, 234, 0.1);
+      border-radius: 15px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: white;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      padding: 10px;
+      padding: 18px 40px;
       border: none;
-      border-radius: 5px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
       cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    .submit-btn:active {
+      transform: translateY(-1px);
     }
 
     footer {
-      background-color: #2a2a2a;
-      color: #ccc;
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: #ecf0f1;
       text-align: center;
-      padding: 15px;
+      padding: 30px 20px;
       font-size: 14px;
+      margin-top: 50px;
     }
 
+    /* Responsive Design */
     @media (max-width: 768px) {
       nav {
         display: none;
       }
-
+      
       .hamburger {
         display: block;
       }
+      
+      .hero-content h1 {
+        font-size: 32px;
+      }
+      
+      .hero-content p {
+        font-size: 16px;
+      }
+      
+      .container {
+        padding: 60px 15px;
+      }
+      
+      .sosial-section, .hubungi-section {
+        padding: 40px 20px;
+        margin: 20px 10px;
+      }
+      
+      .sosial-links {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .sosial-section h2,
+      .hubungi-section h2 {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar {
+        width: 100vw;
+        right: -100vw;
+      }
+      
+      header {
+        padding: 10px 20px;
+      }
+      
+      .logo strong {
+        font-size: 20px;
+      }
+      
+      .hero-content h1 {
+        font-size: 28px;
+      }
+      
+      .sosial-card {
+        padding: 30px 20px;
+      }
+      
+      .contact-form input,
+      .contact-form textarea {
+        padding: 12px 15px;
+      }
+    }
+
+    /* Animation classes */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo"><strong>HaqqiProg</strong></div>
-    <nav>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="haqqigallery.html">Gallery</a>
       <a href="haqqiaccount.html" class="active">Sosial</a>
       <a href="haqqiabout.html">About</a>
     </nav>
-    <button class="hamburger" onclick="toggleSidebar()">☰</button>
   </header>
 
   <div class="sidebar" id="sidebar">
-    <span class="close-btn" onclick="closeSidebar()">✖</span>
+    <span class="close-btn" onclick="closeSidebar()" aria-label="Close">✖</span>
     <a href="index.html">Home</a>
     <a href="haqqigallery.html">Gallery</a>
     <a href="haqqiaccount.html" class="active">Sosial</a>
     <a href="haqqiabout.html">About</a>
   </div>
-
-  <main>
-    <div class="slider-wrapper">
-      <div class="slide active" style="background-image: url('mariia-shalabaieva-HBkpnDVc_Ic-unsplash.jpg');"></div>
-      <div class="hero-content">
-        <h1 data-aos="fade-down">Koneksi Sosial Haqqi</h1>
-        <p data-aos="fade-up" data-aos-delay="100">Temukan saya di berbagai platform media sosial.</p>
-      </div>
+  
+  <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+  
+  <section class="hero-slider">
+    <div class="slide" style="background-image: url('mariia-shalabaieva-HBkpnDVc_Ic-unsplash.jpg');"></div>
+    <div class="hero-content">
+      <h1 data-aos="fade-down">Koneksi Sosial Haqqi</h1>
+      <p data-aos="fade-up" data-aos-delay="100">Temukan saya di berbagai platform media sosial dan mari terhubung untuk berbagi inspirasi!</p>
     </div>
+  </section>
 
-    <section class="sosial-section">
-      <h2 data-aos="fade-up">Media Sosial</h2>
+  <div class="container">
+    <section class="sosial-section" data-aos="fade-up">
+      <h2>Media Sosial</h2>
+      <p>Ikuti perjalanan kreatif saya dan jangan lewatkan update terbaru dari berbagai konten menarik</p>
+      
       <div class="sosial-links">
-        <div class="sosial-card" data-aos="fade-up">
+        <div class="sosial-card" data-aos="fade-up" data-aos-delay="100">
           <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+          <h3>Instagram</h3>
+          <p>Foto-foto perjalanan, behind the scenes, dan momen sehari-hari yang inspiratif</p>
           <a href="https://www.instagram.com/haqqi_lubis" target="_blank">@haqqi_lubis</a>
         </div>
-        <div class="sosial-card" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="sosial-card" data-aos="fade-up" data-aos-delay="200">
           <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
+          <h3>TikTok</h3>
+          <p>Konten kreatif, tips programming, dan video entertainment yang menghibur</p>
           <a href="https://www.tiktok.com/@haqqi_media" target="_blank">@haqqi_media</a>
         </div>
-        <div class="sosial-card" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="sosial-card" data-aos="fade-up" data-aos-delay="300">
           <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+          <h3>LinkedIn</h3>
+          <p>Networking profesional, artikel bisnis, dan update karir terbaru</p>
           <a href="https://linkedin.com/in/haqqi" target="_blank">linkedin.com/in/haqqi</a>
         </div>
       </div>
     </section>
 
-    <section class="hubungi-saya" data-aos="fade-up">
+    <section class="hubungi-section" data-aos="fade-up">
       <h2>Hubungi Saya Langsung</h2>
-      <form>
-        <input type="text" name="nama" placeholder="Nama Anda" required>
-        <input type="email" name="email" placeholder="Email Anda" required>
-        <textarea name="pesan" rows="4" placeholder="Pesan Anda" required></textarea>
-        <button type="submit">Kirim Pesan</button>
+      <p>Punya ide kolaborasi atau ingin berdiskusi? Jangan ragu untuk menghubungi saya!</p>
+      
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <input type="text" name="nama" placeholder="Nama Lengkap" required>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Alamat Email" required>
+        </div>
+        <div class="form-group">
+          <textarea name="pesan" placeholder="Tulis pesan Anda di sini..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Kirim Pesan</button>
       </form>
     </section>
-  </main>
+  </div>
 
   <footer>
-    &copy; <span id="year"></span> HaqqiProg. Hak cipta dilindungi undang-undang.
+    <p>&copy; <span id="year"></span> HaqqiProg. Hak cipta dilindungi undang-undang.</p>
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init();
+    // Initialize AOS
+    AOS.init({ 
+      once: true,
+      duration: 800,
+      easing: 'ease-out-cubic'
+    });
+    
+    // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Sidebar functionality
     function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("active");
-      document.getElementById("overlay").classList.toggle("active");
-      document.body.classList.toggle("no-scroll");
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+      
+      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
     }
 
     function closeSidebar() {
-      document.getElementById("sidebar").classList.remove("active");
-      document.getElementById("overlay").classList.remove("active");
-      document.body.classList.remove("no-scroll"); // 🔓 aktifkan scroll kembali
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.style.overflow = "auto";
     }
 
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', closeSidebar);
+    // Close sidebar when clicking on nav links
+    document.querySelectorAll('.sidebar a, nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        closeSidebar();
+      });
     });
 
-    document.getElementById('overlay').addEventListener('click', closeSidebar);
-
+    // Handle window resize
     let previousWidth = window.innerWidth;
     window.addEventListener("resize", () => {
       const currentWidth = window.innerWidth;
@@ -346,6 +661,61 @@
         closeSidebar();
       }
       previousWidth = currentWidth;
+    });
+
+    // Form submission handler
+    function handleSubmit(event) {
+      event.preventDefault();
+      
+      const submitBtn = event.target.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+      
+      // Show sending state
+      submitBtn.textContent = 'Mengirim...';
+      submitBtn.disabled = true;
+      
+      // Simulate form submission
+      setTimeout(() => {
+        submitBtn.textContent = 'Pesan Terkirim! ✓';
+        submitBtn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+        
+        setTimeout(() => {
+          // Reset form
+          event.target.reset();
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        }, 2000);
+      }, 1000);
+    }
+
+    // Add hover effects to social cards
+    document.querySelectorAll('.sosial-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.classList.add('pulse');
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.classList.remove('pulse');
+      });
+    });
+
+    // Close sidebar with escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSidebar();
+      }
+    });
+
+    // Smooth focus animations for form inputs
+    document.querySelectorAll('.contact-form input, .contact-form textarea').forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'translateY(-2px)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'translateY(0)';
+      });
     });
   </script>
 </body>

@@ -16,17 +16,13 @@
     }
 
     body {
-      background-color: #f4f4f4;
+      background-color: #a1a195;
       color: #222;
+      overflow-x: hidden;
     }
-
-    body.no-scroll {
-      overflow: hidden;
-    }
-
 
     header {
-      background: linear-gradient(to right, #0026ff, #20102b);
+      background: linear-gradient(135deg, #0026ff, #20102b);
       color: white;
       padding: 15px 30px;
       display: flex;
@@ -36,25 +32,40 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .logo strong {
-      font-size: 20px;
+      font-size: 24px;
+      background-color: white;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     nav {
       display: flex;
-      gap: 15px;
+      gap: 20px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
     }
 
     nav a.active {
-      color: gold;
+      background-color: #a1a195;
+      color: #000000;
     }
 
     .hamburger {
@@ -67,18 +78,26 @@
       right: 20px;
       z-index: 1100;
       color: #ffffff;
+      padding: 10px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger:hover {
+      background: rgba(255,255,255,0.1);
     }
 
     .sidebar {
       position: fixed;
       top: 0;
-      right: -260px; /* sembunyikan di kanan */
-      width: 240px;
-      height: 100%;
-      background-color: #1e1e1e;
+      right: -300px;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(180deg, #2c3e50, #34495e);
       padding-top: 60px;
-      transition: 0.3s ease;
+      transition: right 0.3s ease;
       z-index: 1150;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
     }
 
     .sidebar.active {
@@ -87,45 +106,51 @@
 
     .sidebar a {
       display: block;
-      padding: 15px 25px;
+      padding: 18px 25px;
       color: white;
       text-decoration: none;
-      font-weight: bold;
-      border-bottom: 1px solid #333;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background: rgba(255,255,255,0.1);
+      padding-left: 35px;
     }
 
     .sidebar a.active {
-      color: gold;
+      background-color: #a1a195;
+      color: #333;
     }
 
     .close-btn {
       cursor: pointer;
       font-size: 24px;
       position: absolute;
-      top: 10px;
-      left: 20px; /* karena posisinya dari kanan, tombol close tetap di kiri */
+      top: 15px;
+      left: 20px;
       color: white;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
     }
 
-    .search-input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: none;
-      border-radius: 4px;
-    }
-
-    .sidebar-content a:hover {
-      background-color: rgba(255,255,255,0.1);
+    .close-btn:hover {
+      background: rgba(255,255,255,0.1);
+      transform: rotate(90deg);
     }
 
     .overlay {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1050;
+      backdrop-filter: blur(2px);
     }
 
     .overlay.active {
@@ -177,27 +202,34 @@
       justify-content: center;
       align-items: center;
       padding: 0 20px;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(2px);
     }
 
     .hero-content h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
+      font-size: 48px;
+      margin-bottom: 20px;
       font-weight: 700;
+      background-color: white;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero-content p {
-      font-size: 18px;
+      font-size: 20px;
       max-width: 800px;
+      margin-bottom: 10px;
+      color: white;
     }
 
     .typing {
       font-weight: bold;
       color: #ffd700;
-      font-size: 20px;
-      margin-top: 10px;
-      min-height: 24px;
+      font-size: 24px;
+      margin: 20px 0;
+      min-height: 30px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
 
     .stats {
@@ -209,74 +241,119 @@
     }
 
     .stat-box {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 15px;
+      padding: 15px 25px;
       font-weight: bold;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.25);
     }
 
     section {
-      padding: 50px 20px;
+      padding: 80px 20px;
       text-align: center;
-      background-color: #f9f9f9;
+      background-color: #fff;
+      margin: 20px 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    section:nth-child(even) {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
 
     section h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: #333;
+      position: relative;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 2px;
     }
 
     section p {
       font-size: 18px;
       max-width: 700px;
-      margin: 0 auto 30px;
-      line-height: 1.6;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+      color: #555;
     }
 
     .buttons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 20px;
     }
 
     .buttons a {
-      background-color: #006aff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      padding: 12px 25px;
-      border-radius: 8px;
+      padding: 15px 30px;
+      border-radius: 50px;
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
     }
 
     .buttons a:hover {
-      background-color: #a1a195;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
     }
 
     .tools ul {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
+      gap: 20px;
       list-style: none;
       padding: 0;
     }
 
     .tools li {
-      background: #ddd;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-weight: bold;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      padding: 15px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+      color: #333;
+      transition: all 0.3s ease;
+      cursor: default;
+      box-shadow: 0 5px 15px rgba(252, 182, 159, 0.3);
+    }
+
+    .tools li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(252, 182, 159, 0.5);
     }
 
     footer {
-      background-color: #2a2a2a;
-      color: #ccc;
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: #ecf0f1;
       text-align: center;
-      padding: 15px;
+      padding: 30px 20px;
       font-size: 14px;
+      margin-top: 50px;
     }
 
     #typing::after {
@@ -289,14 +366,85 @@
       50% { opacity: 0; }
     }
 
+    /* Scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
       nav {
         display: none;
       }
+      
       .hamburger {
         display: block;
       }
       
+      .hero-content h1 {
+        font-size: 32px;
+      }
+      
+      .hero-content p {
+        font-size: 16px;
+      }
+      
+      .typing {
+        font-size: 18px;
+      }
+      
+      section {
+        padding: 50px 15px;
+        margin: 10px;
+      }
+      
+      section h2 {
+        font-size: 28px;
+      }
+      
+      .stats {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .stat-box {
+        width: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 28px;
+      }
+      
+      .sidebar {
+        width: 100vw;
+        right: -100vw;
+      }
+      
+      header {
+        padding: 10px 20px;
+      }
+      
+      .logo strong {
+        font-size: 20px;
+      }
+    }
+
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
     }
   </style>
 </head>
@@ -313,16 +461,16 @@
   </header>
 
   <div class="sidebar" id="sidebar">
-    <span class="close-btn" onclick="closeSidebar()">✖</span>
-    <a href="index.html" class="active">Home</a>
-    <a href="haqqigallery.html">Gallery</a>
-    <a href="haqqiaccount.html">Sosial</a>
-    <a href="haqqiabout.html">About</a>
+    <span class="close-btn" onclick="closeSidebar()" aria-label="Close">✖</span>
+      <a href="index.html" class="active">Home</a>
+      <a href="haqqigallery.html">Gallery</a>
+      <a href="haqqiaccount.html">Sosial</a>
+      <a href="haqqiabout.html">About</a>
   </div>
   
   <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
   
-  <section class="hero-slider">
+  <section id="home" class="hero-slider">
     <div class="slider-wrapper">
       <div class="slide active" style="background-image: url('Screenshot\ \(42\).png');"></div>
       <div class="slide" style="background-image: url('WhatsApp\ Image\ 2024-11-05\ at\ 20.11.14_663f9978.jpg');"></div>
@@ -330,7 +478,7 @@
     </div>
     <div class="hero-content">
       <h1 data-aos="fade-down">Selamat Datang di HaqqiProg</h1>
-      <p data-aos="fade-up" data-aos-delay="100">Website pribadi Haqqi Lubis</p>
+      <p data-aos="fade-up" data-aos-delay="100">Website pribadi Haqqi Lubis - Tempat berbagi karya dan inspirasi</p>
       <div class="typing" id="typing" data-aos="fade-up" data-aos-delay="300"></div>
       <div class="stats" data-aos="fade-up" data-aos-delay="500">
         <div class="stat-box">5+ Proyek</div>
@@ -342,73 +490,107 @@
 
   <section class="content" data-aos="fade-up">
     <h2>Tentang Situs Ini</h2>
-    <p>HaqqiProg merupakan ruang digital saya untuk berbagi karya, dokumentasi aktivitas, serta koneksi sosial media.</p>
+    <p>HaqqiProg merupakan ruang digital saya untuk berbagi karya, dokumentasi aktivitas, serta koneksi sosial media. Di sini Anda dapat menemukan portfolio, artikel, dan berbagai konten menarik lainnya.</p>
     <div class="buttons">
       <a href="haqqiabout.html">Tentang Saya</a>
       <a href="haqqiaccount.html">Sosial Media</a>
     </div>
   </section>
 
-  <section class="projects" data-aos="fade-up">
+  <section id="projects" class="projects" data-aos="fade-up">
     <h2>Proyek Terbaru</h2>
-    <p>Portfolio projek yang sedang dikerjakan akan ditampilkan di sini. Segera hadir!</p>
+    <p>Portfolio proyek yang sedang dikerjakan akan ditampilkan di sini. Dari pengembangan web hingga konten multimedia, berbagai karya kreatif segera hadir untuk Anda jelajahi.</p>
+    <div class="buttons">
+      <a href="haqqigallery.html">Lihat Gallery</a>
+    </div>
   </section>
 
   <section class="testimoni" data-aos="fade-up">
     <h2>Kutipan Favorit</h2>
-    <p><em>"Jangan takut gagal, karena kesuksesan adalah hasil dari kegagalan yang diperbaiki."</em></p>
+    <p style="font-style: italic; font-size: 20px; color: #667eea;">"Jangan takut gagal, karena kesuksesan adalah hasil dari kegagalan yang diperbaiki."</p>
+    <p style="margin-top: 20px; font-size: 16px;">- Filosofi yang selalu memotivasi dalam setiap langkah perjalanan</p>
   </section>
 
   <section class="tools" data-aos="fade-up">
     <h2>Skill yang Dikuasai</h2>
+    <p>Beragam keahlian yang terus dikembangkan untuk menciptakan karya terbaik:</p>
     <ul>
-      <li>HTML</li>
-      <li>CSS</li>
+      <li>HTML & CSS</li>
       <li>JavaScript</li>
+      <li>Web Design</li>
       <li>Multimedia</li>
       <li>Hospitality</li>
-      <li>Leader</li>
+      <li>Leadership</li>
+      <li>Content Creation</li>
+      <li>Digital Marketing</li>
     </ul>
   </section>
 
-  <section class="contact" data-aos="fade-up">
+  <section id="contact" class="contact" data-aos="fade-up">
     <h2>Ayo Terhubung</h2>
-    <p>Kamu bisa menghubungi saya lewat media sosial atau halaman kontak.</p>
+    <p>Mari berkolaborasi dan bertukar ide! Hubungi saya melalui media sosial atau kirimkan pesan langsung. Saya selalu terbuka untuk diskusi dan kesempatan kerja sama yang menarik.</p>
     <div class="buttons">
-      <a href="haqqiaccount.html">Hubungi Saya</a>
+      <a href="#social">Hubungi Saya</a>
+      <a href="mailto:haqqi@example.com">Email</a>
     </div>
   </section>
 
   <footer>
-    &copy; <span id="year"></span> HaqqiProg. Hak cipta dilindungi undang-undang.
+    <p>&copy; <span id="year"></span> HaqqiProg. Hak cipta dilindungi undang-undang.</p>
   </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- ... seluruh kode kamu sebelumnya tetap ... -->
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-  AOS.init();
-  document.getElementById("year").textContent = new Date().getFullYear();
+    // Initialize AOS
+    AOS.init({ 
+      once: true,
+      duration: 800,
+      easing: 'ease-out-cubic'
+    });
+    
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-  function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("active");
-      document.getElementById("overlay").classList.toggle("active");
-      document.body.classList.toggle("no-scroll");
+    // Sidebar functionality
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+      
+      // Prevent body scroll when sidebar is open
+      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
     }
 
     function closeSidebar() {
-      document.getElementById("sidebar").classList.remove("active");
-      document.getElementById("overlay").classList.remove("active");
-      document.body.classList.remove("no-scroll"); // 🔓 aktifkan scroll kembali
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.style.overflow = "auto";
     }
 
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', closeSidebar);
+    // Close sidebar when clicking on nav links
+    document.querySelectorAll('.sidebar a, nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        closeSidebar();
+        
+        // Smooth scroll to section
+        const href = link.getAttribute('href');
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
     });
 
+    // Close sidebar on overlay click
     document.getElementById('overlay').addEventListener('click', closeSidebar);
 
+    // Handle window resize
     let previousWidth = window.innerWidth;
     window.addEventListener("resize", () => {
       const currentWidth = window.innerWidth;
@@ -418,46 +600,99 @@
       previousWidth = currentWidth;
     });
 
-  // Animasi mengetik
-  const typingText = ["Information Technology", "Multimedia", "Hospitality", "Content Creator"];
-  let i = 0, j = 0;
+    // Typing animation
+    const typingText = ["Information Technology", "Multimedia Expert", "Hospitality Professional", "Content Creator", "Web Developer"];
+    let i = 0, j = 0;
+    let isDeleting = false;
 
-  function type() {
-    const typingEl = document.getElementById("typing");
-    if (!typingEl) return;
+    function type() {
+      const typingEl = document.getElementById("typing");
+      if (!typingEl) return;
 
-    if (j < typingText[i].length) {
-      typingEl.textContent += typingText[i].charAt(j);
-      j++;
-      setTimeout(type, 100);
-    } else {
-      setTimeout(() => {
-        i = (i + 1) % typingText.length;
-        j = 0;
-        typingEl.textContent = "";
-        type();
-      }, 2000);
+      const currentWord = typingText[i];
+      
+      if (isDeleting) {
+        typingEl.textContent = currentWord.substring(0, j - 1);
+        j--;
+        
+        if (j === 0) {
+          isDeleting = false;
+          i = (i + 1) % typingText.length;
+          setTimeout(type, 500);
+          return;
+        }
+        setTimeout(type, 50);
+      } else {
+        typingEl.textContent = currentWord.substring(0, j + 1);
+        j++;
+        
+        if (j === currentWord.length) {
+          isDeleting = true;
+          setTimeout(type, 2000);
+          return;
+        }
+        setTimeout(type, 100);
+      }
     }
-  }
-  type();
+    
+    // Start typing animation after page load
+    setTimeout(type, 1000);
 
-  // Slider otomatis
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
-  }
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
 
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }
-  setInterval(nextSlide, 4000);
-</script>
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+    setInterval(nextSlide, 4000);
 
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
 
+      // Initialize slides with backgrounds
+      slides.forEach((slide, i) => {
+        slide.style.background = slideColors[i];
+      });
+
+      // Auto-advance slides
+      setInterval(nextSlide, 5000);
+
+      // Smooth scroll for navigation
+      document.addEventListener('DOMContentLoaded', function() {
+        // Add fade-in animation to sections when they come into view
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('fade-in-up');
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+          observer.observe(section);
+        });
+      });
+
+    // Add keyboard navigation for accessibility
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeSidebar();
+        }
+      });
+  </script>
 </body>
 </html>
