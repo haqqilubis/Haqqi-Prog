@@ -19,6 +19,8 @@
       background-color: #a1a195;
       color: #222;
       overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
 
     header {
@@ -158,10 +160,17 @@
       display: block;
     }
 
+    /* HERO SLIDER - PERBAIKAN UNTUK FULL COVERAGE */
     .hero-slider {
       position: relative;
       height: 100vh;
+      width: 100vw;
       overflow: hidden;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
     }
 
     .slider-wrapper {
@@ -176,12 +185,15 @@
     .slide {
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: center center;
       width: 100%;
       height: 100%;
       position: absolute;
+      top: 0;
+      left: 0;
       opacity: 0;
       transition: opacity 1s ease-in-out;
+      min-height: 100vh;
     }
 
     .slide.active {
@@ -203,7 +215,7 @@
       justify-content: center;
       align-items: center;
       padding: 0 20px;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.4); /* Slightly darker overlay for better text readability */
       backdrop-filter: blur(2px);
     }
 
@@ -211,7 +223,7 @@
       font-size: 48px;
       margin-bottom: 20px;
       font-weight: 700;
-      background-color: white;
+      background: linear-gradient(45deg, #ffffff, #f0f0f0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -222,6 +234,7 @@
       max-width: 800px;
       margin-bottom: 10px;
       color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
 
     .typing {
@@ -230,7 +243,7 @@
       font-size: 24px;
       margin: 20px 0;
       min-height: 30px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
 
     .stats {
@@ -243,13 +256,14 @@
 
     .stat-box {
       background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
       border-radius: 15px;
       padding: 15px 25px;
       font-weight: bold;
       backdrop-filter: blur(10px);
       transition: all 0.3s ease;
       cursor: default;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
 
     .stat-box:hover {
@@ -257,19 +271,18 @@
       background: rgba(255, 255, 255, 0.25);
     }
 
-    section {
+    /* SECTIONS - KEEP ORIGINAL STYLING WITH BORDER RADIUS */
+    section:not(.hero-slider) {
       padding: 80px 20px;
       text-align: center;
       background-color: #fff;
-      margin: 20px 0;
+      margin: 20px auto;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
-    section:nth-child(even) {
+    section:not(.hero-slider):nth-child(even) {
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
 
@@ -639,6 +652,7 @@
     // Start typing animation after page load
     setTimeout(type, 1000);
 
+    // Slider functionality
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
 
@@ -652,48 +666,37 @@
       currentSlide = (currentSlide + 1) % slides.length;
       showSlide(currentSlide);
     }
+
+    // Auto-advance slides
     setInterval(nextSlide, 4000);
 
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-      }
+    // Smooth scroll for navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add fade-in animation to sections when they come into view
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
 
-      // Initialize slides with backgrounds
-      slides.forEach((slide, i) => {
-        slide.style.background = slideColors[i];
-      });
-
-      // Auto-advance slides
-      setInterval(nextSlide, 5000);
-
-      // Smooth scroll for navigation
-      document.addEventListener('DOMContentLoaded', function() {
-        // Add fade-in animation to sections when they come into view
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('fade-in-up');
-            }
-          });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-          observer.observe(section);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-up');
+          }
         });
+      }, observerOptions);
+
+      document.querySelectorAll('section:not(.hero-slider)').forEach(section => {
+        observer.observe(section);
       });
+    });
 
     // Add keyboard navigation for accessibility
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeSidebar();
-        }
-      });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSidebar();
+      }
+    });
   </script>
 </body>
 </html>

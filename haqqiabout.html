@@ -17,9 +17,16 @@
     }
 
     body {
-      background-color: white;
+      background-color: #a1a195;
       color: #222;
       overflow-x: hidden;
+      transition: all 0.3s ease;
+    }
+
+    /* Dark mode styles */
+    body.dark {
+      background-color: #0f1419;
+      color: #e8e8e8;
     }
 
     body.no-scroll {
@@ -38,11 +45,24 @@
       top: 0;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    body.dark header {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.3);
     }
 
     .logo strong {
       font-size: 24px;
-      background-color: white;
+      background: linear-gradient(45deg, #ffffff, #f0f0f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body.dark .logo strong {
+      background: linear-gradient(45deg, #64ffda, #00bcd4);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -70,7 +90,12 @@
 
     nav a.active {
       background-color: #a1a195;
-      color: #000000;
+      color: #0f1419;
+    }
+
+    body.dark nav a.active {
+      background-color: #64ffda;
+      color: #0f1419;
     }
 
     .hamburger {
@@ -105,6 +130,10 @@
       box-shadow: -5px 0 15px rgba(0,0,0,0.3);
     }
 
+    body.dark .sidebar {
+      background: linear-gradient(180deg, #1a1a2e, #16213e);
+    }
+
     .sidebar.active {
       right: 0;
     }
@@ -125,8 +154,8 @@
     }
 
     .sidebar a.active {
-      background-color: #a1a195;
-      color: #333;
+      background-color: #64ffda;
+      color: #0f1419;
     }
 
     .close-btn {
@@ -158,6 +187,10 @@
       backdrop-filter: blur(2px);
     }
 
+    body.dark .overlay {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
     .overlay.active {
       display: block;
     }
@@ -171,6 +204,10 @@
       overflow: hidden;
     }
 
+    body.dark .hero {
+      background: linear-gradient(135deg, #0f3460 0%, #0c2644 100%);
+    }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -182,6 +219,10 @@
       z-index: 1;
     }
 
+    body.dark .hero::before {
+      background: rgba(0,0,0,0.4);
+    }
+
     .hero > * {
       position: relative;
       z-index: 2;
@@ -191,7 +232,14 @@
       font-size: 48px;
       margin-bottom: 20px;
       font-weight: 700;
-      background-color: white;
+      background: linear-gradient(45deg, #ffffff, #f0f0f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body.dark .hero h1 {
+      background: linear-gradient(45deg, #64ffda, #00bcd4);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -200,6 +248,7 @@
     .hero p {
       font-size: 20px;
       margin-bottom: 40px;
+      color: rgba(255,255,255,0.9);
     }
 
     .profile-photo-wrapper {
@@ -218,9 +267,18 @@
       border: 4px solid rgba(255,255,255,0.2);
     }
 
+    body.dark .profile-photo {
+      border: 4px solid rgba(100,255,218,0.3);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
     .profile-photo:hover {
       transform: scale(1.05);
       box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    }
+
+    body.dark .profile-photo:hover {
+      box-shadow: 0 25px 50px rgba(0,0,0,0.8);
     }
 
     .content {
@@ -230,16 +288,24 @@
     }
 
     .box {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       padding: 30px;
       margin-bottom: 30px;
       border-radius: 20px;
-      border-left: 5px solid #a1a195;
+      border-left: 5px solid #667eea;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      color: #333;
+    }
+
+    body.dark .box {
+      background: rgba(26, 26, 46, 0.95);
+      color: #e8e8e8;
+      border-left: 5px solid #64ffda;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
     .box::before {
@@ -249,9 +315,14 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(90deg, #1b3bcc, #764ba2, #f093fb, #f5576c);
+      background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
       background-size: 300% 100%;
       animation: gradient 3s ease infinite;
+    }
+
+    body.dark .box::before {
+      background: linear-gradient(90deg, #64ffda, #00bcd4, #1976d2, #3f51b5);
+      background-size: 300% 100%;
     }
 
     @keyframes gradient {
@@ -265,10 +336,8 @@
       box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     }
 
-    body.dark .box {
-      background: rgba(44, 62, 80, 0.9);
-      color: #ecf0f1;
-      border-left-color: #3498db;
+    body.dark .box:hover {
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
     }
 
     .box h2 {
@@ -276,6 +345,10 @@
       font-size: 28px;
       color: #667eea;
       position: relative;
+    }
+
+    body.dark .box h2 {
+      color: #64ffda;
     }
 
     .box h2::after {
@@ -289,8 +362,8 @@
       border-radius: 2px;
     }
 
-    body.dark .box h2 {
-      color: #3498db;
+    body.dark .box h2::after {
+      background: linear-gradient(45deg, #64ffda, #00bcd4);
     }
 
     .box h4 {
@@ -301,13 +374,18 @@
     }
 
     body.dark .box h4 {
-      color: #bdc3c7;
+      color: #bbb;
     }
 
     .box p, .box li {
       font-size: 16px;
       line-height: 1.8;
       margin-bottom: 10px;
+      color: #444;
+    }
+
+    body.dark .box p, body.dark .box li {
+      color: #ccc;
     }
 
     .box ul {
@@ -322,12 +400,20 @@
       padding-left: 20px;
     }
 
+    body.dark .box li {
+      border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+    }
+
     .box li::before {
       content: '▶';
       position: absolute;
       left: 0;
       color: #667eea;
       font-size: 12px;
+    }
+
+    body.dark .box li::before {
+      color: #64ffda;
     }
 
     .fancy-button {
@@ -343,6 +429,12 @@
       box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
       position: relative;
       overflow: hidden;
+    }
+
+    body.dark .fancy-button {
+      background: linear-gradient(135deg, #64ffda 0%, #00bcd4 100%);
+      color: #0f1419;
+      box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3);
     }
 
     .fancy-button::before {
@@ -365,6 +457,10 @@
       box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
     }
 
+    body.dark .fancy-button:hover {
+      box-shadow: 0 12px 35px rgba(100, 255, 218, 0.4);
+    }
+
     .modal {
       display: none;
       position: fixed;
@@ -379,8 +475,12 @@
       backdrop-filter: blur(5px);
     }
 
+    body.dark .modal {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
     .modal-content {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(20px);
       color: #333;
       padding: 40px;
@@ -393,6 +493,13 @@
       position: relative;
       animation: modalSlideIn 0.4s ease-out;
       border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    body.dark .modal-content {
+      background: rgba(26, 26, 46, 0.98);
+      color: #e8e8e8;
+      border: 1px solid rgba(100, 255, 218, 0.2);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
     }
 
     @keyframes modalSlideIn {
@@ -414,6 +521,10 @@
       position: relative;
     }
 
+    body.dark .modal-content h2 {
+      color: #64ffda;
+    }
+
     .modal-content h2::after {
       content: '';
       position: absolute;
@@ -423,6 +534,10 @@
       height: 3px;
       background: linear-gradient(45deg, #667eea, #764ba2);
       border-radius: 2px;
+    }
+
+    body.dark .modal-content h2::after {
+      background: linear-gradient(45deg, #64ffda, #00bcd4);
     }
 
     .modal-content ul {
@@ -438,11 +553,22 @@
       border-left: 4px solid #667eea;
       transition: all 0.3s ease;
       position: relative;
+      color: #444;
+    }
+
+    body.dark .modal-content li {
+      background: rgba(100, 255, 218, 0.1);
+      border-left: 4px solid #64ffda;
+      color: #ccc;
     }
 
     .modal-content li:hover {
       background: rgba(102, 126, 234, 0.1);
       transform: translateX(5px);
+    }
+
+    body.dark .modal-content li:hover {
+      background: rgba(100, 255, 218, 0.2);
     }
 
     .modal-content .close {
@@ -463,29 +589,19 @@
       background: rgba(231, 76, 60, 0.1);
     }
 
+    body.dark .modal-content .close {
+      color: #ff6b6b;
+      background: rgba(255, 107, 107, 0.1);
+    }
+
     .modal-content .close:hover {
       background: #e74c3c;
       color: white;
       transform: rotate(90deg);
     }
 
-    body.dark .modal-content {
-      background: rgba(44, 62, 80, 0.95);
-      color: #ecf0f1;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    body.dark .modal-content h2 {
-      color: #3498db;
-    }
-
-    body.dark .modal-content li {
-      background: rgba(52, 152, 219, 0.1);
-      border-left-color: #3498db;
-    }
-
-    body.dark .modal-content li:hover {
-      background: rgba(52, 152, 219, 0.2);
+    body.dark .modal-content .close:hover {
+      background: #ff6b6b;
     }
 
     .sosial-icons {
@@ -506,11 +622,22 @@
       border: 2px solid transparent;
     }
 
+    body.dark .sosial-icons a {
+      color: #64ffda;
+      background: rgba(100, 255, 218, 0.1);
+    }
+
     .sosial-icons a:hover {
       background: #667eea;
       color: white;
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    body.dark .sosial-icons a:hover {
+      background: #64ffda;
+      color: #0f1419;
+      box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
     }
 
     blockquote {
@@ -524,6 +651,13 @@
       align-items: center;
       gap: 15px;
       position: relative;
+      color: #555;
+    }
+
+    body.dark blockquote {
+      border-left: 4px solid #64ffda;
+      background: rgba(100, 255, 218, 0.1);
+      color: #ccc;
     }
 
     blockquote img {
@@ -542,6 +676,47 @@
       color: #ecf0f1;
       font-size: 14px;
       margin-top: 60px;
+    }
+
+    body.dark footer {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #64ffda;
+    }
+
+    /* Dark mode toggle */
+    .dark-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    body.dark .dark-toggle {
+      background: linear-gradient(135deg, #64ffda 0%, #00bcd4 100%);
+      color: #0f1419;
+      box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4);
+    }
+
+    .dark-toggle:hover {
+      transform: scale(1.1) rotate(180deg);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+    }
+
+    body.dark .dark-toggle:hover {
+      box-shadow: 0 12px 35px rgba(100, 255, 218, 0.6);
     }
 
     /* Animations */
@@ -618,6 +793,14 @@
       .sosial-icons {
         justify-content: center;
       }
+
+      .dark-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 20px;
+        right: 20px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -643,26 +826,22 @@
       }
     }
 
-    /* Dark mode toggle (optional) */
-    .dark-toggle {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border: none;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-      z-index: 1000;
+    /* Custom scrollbar untuk dark mode */
+    body.dark::-webkit-scrollbar {
+      width: 8px;
     }
 
-    .dark-toggle:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    body.dark::-webkit-scrollbar-track {
+      background: #1a1a2e;
+    }
+
+    body.dark::-webkit-scrollbar-thumb {
+      background: #64ffda;
+      border-radius: 4px;
+    }
+
+    body.dark::-webkit-scrollbar-thumb:hover {
+      background: #00bcd4;
     }
   </style>
 </head>
@@ -732,7 +911,7 @@
       <p><strong>WhatsApp:</strong> 085789195158</p>
       <div class="sosial-icons">
         <a href="https://linkedin.com/in/haqqi" target="_blank">LinkedIn</a>
-        <a href="https://github.com/haqqi" target="_blank">GitHub</a>
+        <a href="https://github.com/haqqilubis" target="_blank">GitHub</a>
         <a href="https://instagram.com/haqqi_lubis" target="_blank">Instagram</a>
         <a href="https://tiktok.com/@haqqi_media" target="_blank">TikTok</a>
       </div>
@@ -753,7 +932,7 @@
       <h2>Pendidikan</h2>
       <ul>
         <li>D4 Teknologi Rekayasa Perangkat Lunak - Politeknik Negeri Medan</li>
-        <li>S2 Hukum Pemerintah - Universitas Negeri Yogyakarta</li>
+        <li>S2 Ilmu Politik Pemerintah - Universitas Negeri Yogyakarta</li>
       </ul>
       
       <h2>Pengalaman Kerja</h2>
@@ -763,8 +942,8 @@
         <li>IT Manager - Bank BCA Syariah KC Jakarta Barat</li>
         <li>Dosen Teknik Informatika - Universitas Gadjah Mada</li>
         <li>IT Support - Injourney Aviation Services</li>
-        <li>IT Strategic Planning & Business Relations - Bank Syariah Indonesia Landmark Tower RO Banda Aceh</li>
-        <li>Senior Manager of IT Procuremen - Bank Syariah Indonesia RO Medan</li>
+        <li>IT Strategic Planning & Business Relations - Bank Syariah Indonesia Regional Office Banda Aceh</li>
+        <li>Senior Manager of IT Procuremen - Bank Syariah Indonesia Regional Office Medan</li>
         <li>Direktur Teknologi dan Informasi - Bank Syariah Indonesia</li>
         <li>Direktur Human Capital and Compliance - Telkom Indonesia</li>
         <li>Direktur Utama - Bank Syariah Indonesia</li>
@@ -789,7 +968,9 @@
         <li>Ketua Umum Ikatan Alumni Politeknik Negeri Medan (Ikal Polmed)</li>
       </ul>
     </div>
-  </div> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     // Initialize AOS
     AOS.init({ 
@@ -852,16 +1033,21 @@
       const darkToggle = document.querySelector('.dark-toggle');
       darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
       
-      // Save preference
-      localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+      // Save preference to localStorage
+      if (typeof Storage !== "undefined") {
+        const isDark = document.body.classList.contains('dark');
+        localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+      }
     }
 
     // Load dark mode preference
     document.addEventListener('DOMContentLoaded', () => {
-      const darkMode = localStorage.getItem('darkMode') === 'true';
-      if (darkMode) {
-        document.body.classList.add('dark');
-        document.querySelector('.dark-toggle').textContent = '☀️';
+      if (typeof Storage !== "undefined") {
+        const darkMode = localStorage.getItem('darkMode');
+        if (darkMode === 'enabled') {
+          document.body.classList.add('dark');
+          document.querySelector('.dark-toggle').textContent = '☀️';
+        }
       }
     });
 
@@ -918,6 +1104,21 @@
     // Observe all boxes for animation
     document.querySelectorAll('.box').forEach(box => {
       observer.observe(box);
+    });
+
+    // Add loading animation
+    window.addEventListener('load', () => {
+      document.body.style.opacity = '1';
+    });
+
+    // Smooth page transitions
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.3s ease-in-out';
+    
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 100);
     });
   </script>
 </body>
