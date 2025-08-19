@@ -171,6 +171,9 @@
       border-radius: 0;
       margin-left: calc(-50vw + 50%);
       margin-right: calc(-50vw + 50%);
+      border: none;
+      outline: none;
+      box-shadow: none;
     }
 
     .slider-wrapper {
@@ -194,6 +197,9 @@
       opacity: 0;
       transition: opacity 1s ease-in-out;
       min-height: 100vh;
+      border: none;
+      outline: none;
+      box-shadow: none;
     }
 
     .slide.active {
@@ -256,7 +262,7 @@
 
     .stat-box {
       background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.3) !important;
       border-radius: 15px;
       padding: 15px 25px;
       font-weight: bold;
@@ -373,6 +379,11 @@
     #typing::after {
       content: "|";
       animation: blink 1s infinite;
+    }
+
+    *, *::before, *::after {
+      outline: none !important;
+      border: none !important;
     }
 
     @keyframes blink {
